@@ -5,7 +5,7 @@ const Buy = require("../models/buy.js");
 const Sell = require("../models/sell.js");
 const Schemes = require("../models/schemes.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = "mongodb://127.0.0.1:27017/kisanSeva";
 
 
 main()
