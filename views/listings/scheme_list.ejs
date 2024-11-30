@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <h3>All Loans Available</h3>
+  <!-- <form action="/listing/new" method="GET">
+    <button>Create New Listing</button>
+  </form> -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let listing of schemes){ %>
+    <a class="listing-link" href="/schemes/<%=listing._id %>"
+      ><div class="card col" style="width: 20rem">
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.scheme_name %></b>
+            <br />
+            Description: &#8377; <%= listing.description %>
+            <br />
+            Eligibility Criteria: <%= listing.eligibility %>
+            <br />
+            Target Beneficiaries: <%= listing.target_beneficiaries %>
+            <br />
+            Subsidy Percentage: <%= listing.subsidy_percentage %>
+            <br />
+            Contact Info: <%= listing.contact_info%>
+          </p>
+        </div>
+      </div></a
+    >
+    <% } %>
+  </div>
+</body>

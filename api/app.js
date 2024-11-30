@@ -5,10 +5,10 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 
-// const Schemes = require("../models/schemes.js");
+const Schemes = require("../models/schemes.js");
 const Loans = require("../models/loans.js");
 // const Buy = require("../models/buy.js");
-const Sell = require("../models/sell.js");
+const Sells = require("../models/sell.js");
 
 
 require('dotenv').config({ path: '../.env' });
@@ -37,6 +37,34 @@ app.get("/allLoans", async (req, res) => {
     const loans = await Loans.find({});
     res.render("listings/loan_list.ejs", { loans });
 });
+app.get("/allLoans/:id", async (req, res) => {
+    let { id } = req.params;
+    const listing = await Loans.findById(id);
+    res.render("listings/loan_show.ejs", { listing });
+
+})
+app.get("/schemes", async (req, res) => {
+    const schemes = await Schemes.find({});
+    res.render("listings/scheme_list.ejs", { schemes });
+});
+app.get("/schemes/:id", async (req, res) => {
+    let { id } = req.params;
+    const listing = await Schemes.findById(id);
+    res.render("listings/loan_show.ejs", { listing });
+
+})
+
+app.get("/sells", async (req, res) => {
+    const sells = await Sells.find({});
+    res.render("listings/sell_list.ejs", { sells });
+});
+app.get("/sells/:id", async (req, res) => {
+    let { id } = req.params;
+    const listing = await Sells.findById(id);
+    res.render("listings/loan_show.ejs", { listing });
+
+})
+
 app.listen(port, () => {
     console.log("server listening on port", port);
 })

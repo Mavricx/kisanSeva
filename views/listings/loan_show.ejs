@@ -1,0 +1,39 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row mt-3">
+    <div class="col-8 offset-3">
+      <h3>Loan Details:</h3>
+    </div>
+    <div class="card col" style="width: 20rem">
+      <div class="card-body">
+        <p class="card-text">
+          <b><%=listing.title %></b>
+          <br />
+          Loan Amount: &#8377; <%= listing.amount %>
+          <br />
+          Bank Name: <%= listing.bankName %>
+          <br />
+          Interest Rate: <%= listing.interestRate %>
+          <br />
+          Duration: <%= listing.duration %>
+          <br />
+          Bank Website: <%= listing.bankWebsite %>
+          <br />
+          Customer support: <%= listing.customerSupport %>
+        </p>
+      </div>
+    </div>
+    <br />
+    <div class="btns">
+      <a
+        href="/listing/<%=listing.id%>/edit"
+        class="btn btn-dark col-1 offset-3 add-btn"
+      >
+        Apply</a
+      >
+      <form action="/listing/<%=listing.id%>?_method=DELETE" method="post">
+        <button class="btn btn-dark offset-5">Delete</button>
+      </form>
+    </div>
+  </div>
+</body>

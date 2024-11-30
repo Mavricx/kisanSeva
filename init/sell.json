@@ -1,0 +1,70 @@
+[{"itemName": "Wheat",
+       "pricePerUnit": 120,
+       "region": "Punjab",
+       "image":"https://img2.exportersindia.com/product_images/bc-full/2020/1/5449556/wheat-1577948018-5233011.jpeg",
+       "minOrder": 100
+   },
+   {
+       "itemName": "Basmati Rice",
+       "pricePerUnit": 85,
+       "region": "Haryana",
+       "image":"https://m.media-amazon.com/images/I/51eZ-U97OyL.AC_UF1000,1000_QL80.jpg",
+       "minOrder": 50
+   },
+   {
+       "itemName": "Cotton",
+       "pricePerUnit": 95,
+       "region": "Gujarat",
+       "image":"https://images.indianexpress.com/2024/10/Cotton-Farm.jpeg",
+       "minOrder": 75
+   },
+   {
+       "itemName": "Turmeric",
+       "pricePerUnit": 180,
+       "region": "Telangana",
+       "image":"https://assets.unileversolutions.com/v1/90855769.png",
+       "minOrder": 25
+   },
+   {
+       "itemName": "Potato",
+       "pricePerUnit": 30,
+       "region": "Bihar",
+       "image":"https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2014/01/potatoes-411975_1280-1024x682.jpg",
+       "minOrder": 200
+   },
+   {
+       "itemName": "Chili Peppers",
+       "pricePerUnit": 110,
+       "region": "Andhra Pradesh",
+       "image":"https://media.post.rvohealth.io/wp-content/uploads/2020/08/766x415_Can_Cayenne_Pepper_Help_You_Lose_Weight-732x415.jpg",
+       "minOrder": 60
+   },
+   {
+       "itemName": "Onion",
+       "pricePerUnit": 45,
+       "region": "Maharashtra",
+       "image":"https://5.imimg.com/data5/ANDROID/Default/2021/3/GP/VO/XV/125443919/screenshot-20210320-183611-jpg-500x500.jpg",
+       "minOrder": 150
+   },
+   {
+       "itemName": "Soybean",
+       "pricePerUnit": 70,
+       "region": "Madhya Pradesh",
+       "image":"https://www.prabhatkhabar.com/wp-content/uploads/2024/05/soybean-Benefits-1.jpg",
+       "minOrder": 100
+   },
+   {
+       "itemName": "Maize",
+       "pricePerUnit": 55,
+       "region": "Rajasthan",
+       "image":"https://www.fitterfly.com/blog/wp-content/uploads/2024/08/Is-Maize-Good-for-Diabetes-Diabetes-Diet-Tips-Benefits-1200x900.webp",
+       "minOrder": 125
+   },
+   {
+       "itemName": "Sugarcane",
+       "pricePerUnit": 65,
+       "region": "Uttar Pradesh",
+       "image":"https://images.healthshots.com/healthshots/en/uploads/2023/05/26121754/sugarcane-juice-1-1600x900.jpg",
+       "minOrder": 80
+   }
+]
