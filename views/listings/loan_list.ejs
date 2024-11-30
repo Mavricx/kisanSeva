@@ -1,0 +1,35 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <h3>All Loans Available</h3>
+  <!-- <form action="/listing/new" method="GET">
+    <button>Create New Listing</button>
+  </form> -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let listing of loans){ %>
+    <a class="listing-link" href="/allLoans/<%=listing._id %>"
+      ><div class="card col" style="width: 20rem">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.title %></b>
+            <br />
+            Loan Amount: &#8377; <%= listing.amount %>
+            <br />
+            Bank Name: <%= listing.bankName %>
+            <br />
+            Interest Rate: <%= listing.interestRate %>
+            <br />
+            Duration: <%= listing.duration %>
+            <br />
+            Bank Website: <%= listing.bankWebsite %>
+            <br />
+            Customer support: <%= listing.customerSupport %>
+          </p>
+        </div>
+      </div></a
+    >
+    <% } %>
+  </div>
+</body>
+
+
