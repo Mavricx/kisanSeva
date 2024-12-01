@@ -2,17 +2,12 @@
 <body>
   <div class="row mt-3">
     <div class="col-8 offset-3">
-      <h3>Product Details:</h3>
+      <h3>Product details Details:</h3>
     </div>
-    <div class="card col" style="width: 20rem; text-align: center">
-      <img
-        src="<%= listing.image %>"
-        class="card-img-top show-img"
-        alt="listing_image"
-      />
+    <div class="card col" style="width: 20rem">
       <div class="card-body">
         <p class="card-text">
-          <b><%= listing.productType %></b>
+          <b><%=listing.productType %></b>
           <br />
           Price per kg: &#8377; <%= listing.pricePerKg %>
           <br />
@@ -22,20 +17,22 @@
           <br />
           Duration: <%= listing.duration %>
           <br />
-          Contact Number: <%= listing.contactNumber %>
+          Bank Website: <%= listing.bankWebsite %>
+          <br />
+          Contact Number: <%= listing.customerSupport %>
         </p>
       </div>
     </div>
     <br />
     <div class="btns">
       <a
-        href="/buys/<%= listing.id %>/edit"
+        href="/listing/<%=listing.id%>/edit"
         class="btn btn-dark col-1 offset-3 add-btn"
       >
-        Buy this product
-      </a>
-      <form action="/buys/<%= listing.id %>?_method=DELETE" method="post">
-        <button class="btn btn-dark offset-5">Not Interested</button>
+        Buy this Product</a
+      >
+      <form action="/listing/<%=listing.id%>?_method=DELETE" method="post">
+        <button class="btn btn-dark offset-5">Delete</button>
       </form>
     </div>
   </div>
