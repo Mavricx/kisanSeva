@@ -7,7 +7,7 @@ const ejsMate = require('ejs-mate');
 
 const Schemes = require("../models/schemes.js");
 const Loans = require("../models/loans.js");
-// const Buy = require("../models/buy.js");
+const Buys = require("../models/buy.js");
 const Sells = require("../models/sell.js");
 
 require('dotenv').config({ path: '../.env' });
@@ -57,7 +57,7 @@ app.get("/schemes", async (req, res) => {
 app.get("/schemes/:id", async (req, res) => {
     let { id } = req.params;
     const listing = await Schemes.findById(id);
-    res.render("listings/loan_show.ejs", { listing });
+    res.render("listings/scheme_show.ejs", { listing });
 
 })
 
@@ -65,12 +65,68 @@ app.get("/sells", async (req, res) => {
     const sells = await Sells.find({});
     res.render("listings/sell_list.ejs", { sells });
 });
-app.get("/sells/:id", async (req, res) => {
-    let { id } = req.params;
-    const listing = await Sells.findById(id);
-    res.render("listings/loan_show.ejs", { listing });
+app.get("/sells/new", (req, res) => {
+    res.render("listings/sell_new.ejs")
 
 })
+app.get("/sells/:id", async (req, res) => {
+    let { id } = req.params;
+    try {
+        const listing = await Sells.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+        res.render("listings/sell_show.ejs", { listing });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+app.post("/sells", async (req, res) => {
+    try {
+        const newListing = new Sells(req.body.listing);
+        await newListing.save();
+        res.redirect(`/sells`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+app.get("/sells/:id/edit", async (req, res) => {
+    let { id } = req.params;
+    const listing = await Sells.findById(id);
+    res.render("listings/sell_edit.ejs", { listing });
+})
+app.put("/sells/:id", async (req, res) => {
+    let { id } = req.params;
+    await Sells.findByIdAndUpdate(id, { ...req.body.listing });
+    res.redirect(`/sells/${id}`)
+})
+
+app.delete("/sells/:id", async (req, res) => {
+    let { id } = req.params;
+    let deletedListing = await Sells.findByIdAndDelete(id);
+    console.log(deletedListing);
+    res.redirect("/sells");
+
+})
+app.get("/buys", async (req, res) => {
+    const buys = await Buys.find({});
+    res.render("listings/buy_list.ejs", { buys });
+});
+app.get("/buys/:id", async (req, res) => {
+    let { id } = req.params;
+    try {
+        const listing = await Buys.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+        res.render("listings/buy_show.ejs", { listing });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 app.listen(port, () => {
     console.log("server listening on port", port);

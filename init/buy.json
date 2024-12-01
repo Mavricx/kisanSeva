@@ -1,0 +1,73 @@
+
+[
+   {
+       "sellerName": "Rajesh Singh",
+       "age": 42,
+       "farmLocation": "Ludhiana, Punjab",
+       "productType": "Wheat Seeds",
+       "productQuantity": 500,
+       "pricePerKg": 120,
+       "farmSize": "12 acres",
+       "yearsOfExperience": 20,
+       "contactNumber": "+91-9876543210",
+       "certificationType": "Organic Certified",
+       "image":"https://m.media-amazon.com/images/I/71xuH19n5YL.AC_UF1000,1000_QL80.jpg",
+       "primaryCrop": "Wheat"
+   },
+   {
+       "sellerName": "Mohan Yadav",
+       "age": 55,
+       "farmLocation": "Muzaffarpur, Bihar",
+       "productType": "Rice",
+       "productQuantity": 750,
+       "pricePerKg": 35,
+       "farmSize": "8 acres",
+       "yearsOfExperience": 30,
+       "contactNumber": "+91-8765432109",
+       "certificationType": "Traditional Farming",
+       "image":"https://www.realsimple.com/thmb/uVGcBOpcOJBCEbs4WRx8fmeoFxM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/507936866_6136178378001_6129561006001-vs-03eda158973046dcbab360b0a1644f71.jpg",
+       "primaryCrop": "Rice"
+   },
+   {
+       "sellerName": "Priya Patel",
+       "age": 38,
+       "farmLocation": "Junagadh, Gujarat",
+       "productType": "Cotton",
+       "productQuantity": 300,
+       "pricePerKg": 80,
+       "farmSize": "15 acres",
+       "yearsOfExperience": 15,
+       "contactNumber": "+91-7654321098",
+       "certificationType": "Sustainable Agriculture",
+       "image":"https://cdn.shopify.com/s/files/1/0497/1809/files/Cotton-plant-field.jpg?v=1588251695",
+       "primaryCrop": "Cotton"
+   },
+   {
+       "sellerName": "Suresh Reddy",
+       "age": 48,
+       "farmLocation": "Warangal, Telangana",
+       "productType": "Turmeric",
+       "productQuantity": 250,
+       "pricePerKg": 150,
+       "farmSize": "6 acres",
+       "yearsOfExperience": 25,
+       "contactNumber": "+91-9988776655",
+       "certificationType": "Organic Spice Cultivation",
+       "image":"https://healthmatters.nyp.org/wp-content/uploads/2018/10/turmeric-hero.jpg",
+       "primaryCrop": "Turmeric"
+   },
+   {
+       "sellerName": "Amar Kumar",
+       "age": 60,
+       "farmLocation": "Patna, Bihar",
+       "productType": "Potato",
+       "productQuantity": 600,
+       "pricePerKg": 25,
+       "farmSize": "10 acres",
+       "yearsOfExperience": 35,
+       "contactNumber": "+91-8877665544",
+       "certificationType": "Traditional Farming",
+       "image":"https://cdn.mos.cms.futurecdn.net/Ys52dqtT4fLt6m3rpRLdxm.jpg",
+       "primaryCrop": "Potato"
+   }
+]
