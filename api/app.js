@@ -11,7 +11,7 @@ const Buys = require("../models/buy.js");
 const Sells = require("../models/sell.js");
 
 require('dotenv').config({ path: '../.env' });
-const dbUrl = process.env.MONGODB_URL;
+const dbUrl = process.env.MONGO_URL;
 const port = process.env.PORT || 3000;
 
 app.set("views", path.join(__dirname, '../views'));
@@ -29,7 +29,7 @@ main().then(() => {
 }).catch(err => console.log(err));
 
 app.get("/", (req, res) => {
-    res.render("listings/register.ejs")
+    res.render("listings/index.ejs")
 })
 app.get("/login", (req, res) => {
     res.render("listings/login.ejs")
