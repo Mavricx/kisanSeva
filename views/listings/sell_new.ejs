@@ -1,0 +1,70 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <br /><br />
+  <br />
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3>Create New Listing</h3>
+
+      <form method="post" action="/sells">
+        <div class="mb-3">
+          <label for="itemName" class="form-label">Item Name:</label>
+          <input
+            type="text"
+            name="listing[itemName]"
+            placeholder="Enter Item Name you want to sell"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL:</label>
+          <input
+            type="text"
+            name="listing[image]"
+            placeholder="Enter Image URL"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="region" class="form-label">Region:</label>
+          <input
+            type="text"
+            name="listing[region]"
+            class="form-control"
+            placeholder="e.g: Jaipur, Rajasthan"
+            required
+          />
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="pricePerUnit" class="form-label">Price Per Unit:</label>
+            <input
+              type="number"
+              name="listing[pricePerUnit]"
+              placeholder="e.g: 2000"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="mb-3 col-md-4">
+            <label for="minOrder" class="form-label">Minimum Order:</label>
+            <input
+              type="number"
+              name="listing[minOrder]"
+              placeholder="e.g: 10"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-dark add-btn">Add</button>
+      </form>
+      <br /><br /><br />
+    </div>
+  </div>
+</body>

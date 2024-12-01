@@ -1,0 +1,55 @@
+
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3>Edit Listing</h3>
+      <form method="post" action="/sells/<%=listing.id%>?_method=PUT">
+        <div class="md-3">
+          <label for="title" class="form-label"> Title:</label>
+          <input
+            type="text"
+            name="listing[itemName]"
+            class="form-control"
+            value="<%=listing.itemName %>"
+          />
+        </div>
+        <div class="md-3">
+          <label for="image" class="form-label">Image URL:</label>
+          <input
+            type="text"
+            name="listing[image]"
+            class="form-control"
+            value="<%=listing.image %>"
+          />
+        </div>
+        <div class="md-3">
+          <label for="region" class="form-label">Available Region: </label>
+          <input
+          type="text"
+            name="listing[region]"
+            class="form-control"
+            class="form-control"
+          >
+              <%=listing.region %></input
+          >
+        </div>
+        <div class="md-3">
+          <label for="minOrder" class="form-label">Minimum Amount of Order</label>
+          <input
+            type="text"
+            name="listing[minOrder]"
+            class="form-control"
+            value="<%=listing.minOrder %>"
+          />
+        </div>
+        </div>
+        <br /><br />
+        <button type="submit" class="btn add-btn btn-sm">Update</button>
+        <a href="/sells">
+          <button class="btn add-btn">Back</button>
+        </a>
+      </form>
+    </div>
+  </div>
+</body>
