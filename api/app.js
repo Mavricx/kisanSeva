@@ -11,7 +11,7 @@ const Loans = require("../models/loans.js");
 const Sells = require("../models/sell.js");
 
 require('dotenv').config({ path: '../.env' });
-const dbUrl = "mongodb+srv://mavricx:PikulhaveAtlas@cluster0.aisxj.mongodb.net/kisanSeva";
+const dbUrl = process.env.MONGODB_URL;
 const port = process.env.PORT || 3000;
 
 app.set("views", path.join(__dirname, '../views'));
