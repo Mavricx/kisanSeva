@@ -10,9 +10,8 @@ const Loans = require("../models/loans.js");
 // const Buy = require("../models/buy.js");
 const Sells = require("../models/sell.js");
 
-
 require('dotenv').config({ path: '../.env' });
-const dbUrl = process.env.MONGO_URL;
+const dbUrl = "mongodb+srv://mavricx:PikulhaveAtlas@cluster0.aisxj.mongodb.net/kisanSeva";
 const port = process.env.PORT || 3000;
 
 app.set("views", path.join(__dirname, '../views'));
@@ -29,9 +28,17 @@ main().then(() => {
     console.log("database connection successful");
 }).catch(err => console.log(err));
 
-
 app.get("/", (req, res) => {
-    res.send("hi there")
+    res.render("listings/register.ejs")
+})
+app.get("/login", (req, res) => {
+    res.render("listings/login.ejs")
+})
+app.get("/register", (req, res) => {
+    res.render("listings/register.ejs")
+})
+app.get("/dashboard", (req, res) => {
+    res.render("listings/dashboard.ejs")
 })
 app.get("/allLoans", async (req, res) => {
     const loans = await Loans.find({});
