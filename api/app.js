@@ -7,7 +7,7 @@ const ejsMate = require('ejs-mate');
 
 const Schemes = require("../models/schemes.js");
 const Loans = require("../models/loans.js");
-// const Buy = require("../models/buy.js");
+const Buys = require("../models/buy.js");
 const Sells = require("../models/sell.js");
 
 
@@ -103,6 +103,23 @@ app.delete("/sells/:id", async (req, res) => {
     res.redirect("/sells");
 
 })
+app.get("/buys", async (req, res) => {
+    const buys = await Buys.find({});
+    res.render("listings/buy_list.ejs", { buys });
+});
+app.get("/buys/:id", async (req, res) => {
+    let { id } = req.params;
+    try {
+        const listing = await Buys.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+        res.render("listings/buy_show.ejs", { listing });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 app.listen(port, () => {
     console.log("server listening on port", port);
