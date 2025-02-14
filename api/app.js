@@ -1,18 +1,29 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config({ path: '../.env' })
+}
+const dbUrl = process.env.MONGO_URL;
+const port = process.env.PORT || 3000;
+
+
 const path = require('path');
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
+const ExpressError = require('../utils/ExpressError.js')
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
+const Users = require('../models/user.js');
 const Schemes = require("../models/schemes.js");
 const Loans = require("../models/loans.js");
-const Buys = require("../models/buy.js");
-const Sells = require("../models/sell.js");
+const Items = require("../models/buy.js");
 
-require('dotenv').config({ path: '../.env' });
-const dbUrl = process.env.MONGO_URL;
-const port = process.env.PORT || 3000;
+
+
 
 app.set("views", path.join(__dirname, '../views'));
 app.use(express.urlencoded({ extended: true }));
