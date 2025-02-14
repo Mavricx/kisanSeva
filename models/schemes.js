@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const subsidySchemeSchema = new Schema({
-    scheme_name: {
+    schemeName: {
         type: String,
         required: true
     },
@@ -9,22 +9,23 @@ const subsidySchemeSchema = new Schema({
         type: String,
         required: true
     },
-    eligibility: {
+    organization: {
         type: String,
         required: true
     },
-    target_beneficiaries: {
+    contactInfo: {
         type: String,
         required: true
     },
-    subsidy_percentage: {
+    image: {
         type: String,
-        required: true
+        default:
+            "https://www.ambujafoundation.org/images/agri-mission-impact-img2.jpg",
+        set: (v) =>
+            v === ""
+                ? "https://www.ambujafoundation.org/images/agri-mission-impact-img2.jpg"
+                : v,
     },
-    contact_info: {
-        type: String,
-        required: true
-    }
 });
 
 const SubsidyScheme = mongoose.model('Schemes', subsidySchemeSchema);

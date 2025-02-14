@@ -4,8 +4,15 @@ const Schema = mongoose.Schema;
 const agriculturalLoanSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        intl: true
     },
+    description: {
+        type: String,
+        required: true,
+        intl: true
+    },
+
     bankName: {
         type: String,
         required: true
@@ -26,10 +33,15 @@ const agriculturalLoanSchema = new Schema({
         type: String,
         required: true
     },
-    customerSupport: {
+    image: {
         type: String,
-        required: true
-    }
+        default:
+            "https://images.jdmagicbox.com/comp/kolkata/a4/033pxx33.xx33.140523102731.c1a4/catalogue/state-bank-of-india-kankurgachi-kolkata-nationalised-banks-0l706rkhvp.jpg",
+        set: (v) =>
+            v === ""
+                ? "https://images.jdmagicbox.com/comp/kolkata/a4/033pxx33.xx33.140523102731.c1a4/catalogue/state-bank-of-india-kankurgachi-kolkata-nationalised-banks-0l706rkhvp.jpg"
+                : v,
+    },
 });
 
 const AgriculturalLoan = mongoose.model('Loans', agriculturalLoanSchema);

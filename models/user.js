@@ -16,16 +16,9 @@ const userSchema = new Schema({
         enum: ["farmer", "seller", "Banker", "ngo"],
     },
     address: {
-        city: String,
-        state: String,
-        pin: Number,
+        type: String,
+        require: true
     },
-    sell_items: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Sales",
-        }
-    ]
 
 })
 userSchema.plugin(passportLocalMongoose);

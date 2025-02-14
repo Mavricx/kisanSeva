@@ -6,7 +6,7 @@ module.exports.itemSchema = Joi.object({
         location: Joi.string().required(),
         pricePerUnit: Joi.number().required().min(0),
         minOrder: Joi.number().required().min(0),
-        image: Joi.string().allow(" ", null)
+        image: Joi.string().allow(" ", null),
     }).required()
 })
 
@@ -19,11 +19,13 @@ module.exports.reviewSchema = Joi.object({
 
 module.exports.loanSchema = Joi.object({
     loan: Joi.object({
-        loanAmount: Joi.number().required().min(0),
+        title: Joi.string().required(),
         description: Joi.number().required(),
-        rateOfInterest: Joi.number().required().min(0),
+        bankName: Joi.string().required(),
+        amount: Joi.number().required().min(0),
+        interestRate: Joi.number().required().min(0),
         duration: Joi.number().required().min(0),
-        loanType: Joi.string().required(),
+        bankWebsite: Joi.string().required(),
         image: Joi.string().allow(" ", null)
     }).required()
 })
@@ -33,6 +35,7 @@ module.exports.schemeSchema = Joi.object({
         schemeName: Joi.string().required(),
         description: Joi.string().required(),
         organization: Joi.string().required(),
+        contactInfo: Joi.string().required(),
         image: Joi.string().allow(" ", null)
     }).required()
 })
