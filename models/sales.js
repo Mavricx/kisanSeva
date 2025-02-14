@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const listingSchema = new Schema({
+    sellerName: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     itemName: {
         type: String,
         required: true
@@ -29,5 +33,5 @@ const listingSchema = new Schema({
     }
 });
 
-const Listing = mongoose.model("Sells", listingSchema);
+const Listing = mongoose.model("Sales", listingSchema);
 module.exports = Listing;

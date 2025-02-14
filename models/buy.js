@@ -3,19 +3,18 @@ const Schema = mongoose.Schema;
 
 const farmerSchema = new Schema({
     sellerName: {
-        type: String,
-        required: true
-    },
-    age: {
-        type: Number,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     farmLocation: {
-        type: String,
-        required: true
+        city: { type: String, require: true },
+        state: { type: String, require: true },
+        pin: { type: Number, require: true }
+
     },
     productType: {
         type: String,
+        enum: ["crop", "vegetables", "fruits", "machinery", "seeds", "fertilizers",],
         required: true
     },
     productQuantity: {
@@ -24,10 +23,6 @@ const farmerSchema = new Schema({
     },
     pricePerKg: {
         type: Number,
-        required: true
-    },
-    farmSize: {
-        type: String,
         required: true
     },
     yearsOfExperience: {
@@ -54,7 +49,13 @@ const farmerSchema = new Schema({
     primaryCrop: {
         type: String,
         required: true
-    }
+    },
+    review: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Review",
+        }
+    ]
 });
 
 const Farmer = mongoose.model('Buy', farmerSchema);
