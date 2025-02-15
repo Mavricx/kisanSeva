@@ -5,21 +5,20 @@
       <h3>Scheme Details:</h3>
     </div>
     <div class="card col" style="width: 20rem">
+      <img
+        src="<%= scheme.image%>"
+        class="card-img-top show-img"
+        alt="listing_image"
+      />
       <div class="card-body">
         <p class="card-text">
-          <b><%=listing.scheme_name %></b>
+          <b><%=scheme.schemeName %></b>
           <br />
-          Description: &#8377; <%= listing.description %>
+          Description: &#8377; <%= scheme.description %>
           <br />
-          Eligibility Criteria: <%= listing. eligibility %>
+          <b>Organization:</b> <%= scheme.organization %>
           <br />
-          Target Beneficiaries: <%= listing.target_beneficiaries %>
-          <br />
-          Subsidy Percentage: <%= listing.subsidy_percentage %>
-          <br />
-
-          Contact info: <%= listing. contact_info %>
-          
+          Contact info: <%= scheme.contactInfo %>
         </p>
       </div>
     </div>

@@ -8,7 +8,7 @@ module.exports.allItems = async (req, res) => {
 module.exports.showOneItem = async (req, res) => {
     let { id } = req.params;
     try {
-        const item = await Item.findById(id);
+        const item = await Item.findById(id).populate({path:"reviews",populate:{path:"author"},}).populate("owner");
         if (!item) {
             return res.status(404).send("The product not found");
         }

@@ -5,35 +5,41 @@
       <h3>Loan Details:</h3>
     </div>
     <div class="card col" style="width: 20rem">
+      <img
+      src="<%= loan.image%>"
+      class="card-img-top show-img"
+      alt="listing_image"
+    />
       <div class="card-body">
         <p class="card-text">
-          <b><%=listing.title %></b>
+          <b><%=loan.title %></b>
           <br />
-          Loan Amount: &#8377; <%= listing.amount %>
+          <%= loan.description %>
           <br />
-          Bank Name: <%= listing.bankName %>
+          Loan Amount: &#8377; <%= loan.amount %>
           <br />
-          Interest Rate: <%= listing.interestRate %>
+          Bank Name: <%= loan.bankName %>
           <br />
-          Duration: <%= listing.duration %>
+          Interest Rate: <%= loan.interestRate %>
           <br />
-          Bank Website: <%= listing.bankWebsite %>
+          Duration: <%= loan.duration %>
           <br />
-          Customer support: <%= listing.customerSupport %>
+          Bank Website: <%= loan.bankWebsite %>
+
         </p>
       </div>
     </div>
     <br />
-    <div class="btns">
+    <!-- <div class="btns">
       <a
-        href="/listing/<%=listing.id%>/edit"
+        href="/listing/<%=loan.id%>/edit"
         class="btn btn-dark col-1 offset-3 add-btn"
       >
         Apply</a
       >
-      <form action="/listing/<%=listing.id%>?_method=DELETE" method="post">
+      <form action="/listing/<%=loan.id%>?_method=DELETE" method="post">
         <button class="btn btn-dark offset-5">Delete</button>
       </form>
-    </div>
+    </div> -->
   </div>
 </body>

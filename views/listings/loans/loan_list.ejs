@@ -8,6 +8,12 @@
     <% for (let listing of loans){ %>
     <a class="listing-link" href="/allLoans/<%=listing._id %>"
       ><div class="card col" style="width: 20rem">
+        <img
+          src="<%=loan.image %>"
+          class="card-img-top"
+          alt="listing_image"
+          style="height: 20rem"
+        />
         <div class="card-body">
           <p class="card-text">
             <b><%=listing.title %></b>
@@ -21,8 +27,6 @@
             Duration: <%= listing.duration %>
             <br />
             Bank Website: <%= listing.bankWebsite %>
-            <br />
-            Customer support: <%= listing.customerSupport %>
           </p>
         </div>
       </div></a
@@ -30,5 +34,3 @@
     <% } %>
   </div>
 </body>
-
-

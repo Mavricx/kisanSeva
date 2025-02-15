@@ -6,20 +6,24 @@
     </div>
     <div class="card col-6 offset-3 show-card">
       <img
-        src="<%= listing.image %>"
+        src="<%= item.image %>"
         class="card-img-top show-img"
         alt="listing_image"
       />
       <div class="card-body">
         <p class="card-text">
-          <b>Item Name:</b> <%= listing.productType %>
+          <b>Seller: </b><%= item.owner.name  %>
+          <b>Item Name:</b> <%= item.title %>
           <br />
-          <b>Price Per Unit:</b> &#8377; <%= listing.pricePerKg %>
+          <p><%= item.description %></p>
+          <br>
+          <b>Price Per Unit:</b> &#8377; <%= item.pricePerKg %>
           <br />
-          <b>Region:</b> <%= listing.farmLocation %>
-          <b>Product Quantity:</b> <%= listing.productQuantity %>
+          <b>Region:</b> <%= item.location %> <b>Product Quantity:</b> <%=
+          item.productQuantity %>
           <br />
-          <b>Contact Number:</b> <%=listing.contactNumber %>
+          <b>Contact:</b> <%= item.contactDetail %>
+          <b>Minimum Order Quantity :</b><%= item.minOrder %>
         </p>
       </div>
       <div class="btns">

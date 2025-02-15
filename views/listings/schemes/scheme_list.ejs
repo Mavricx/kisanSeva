@@ -8,19 +8,21 @@
     <% for (let listing of schemes){ %>
     <a class="listing-link" href="/schemes/<%=listing._id %>"
       ><div class="card col" style="width: 20rem">
+        <img
+          src="<%=listing.image %>"
+          class="card-img-top"
+          alt="listing_image"
+          style="height: 20rem"
+        />
         <div class="card-body">
           <p class="card-text">
-            <b><%=listing.scheme_name %></b>
+            <b><%=listing.schemeName %></b>
             <br />
             Description: &#8377; <%= listing.description %>
             <br />
-            Eligibility Criteria: <%= listing.eligibility %>
+            Organization: <%= listing.organization %>
             <br />
-            Target Beneficiaries: <%= listing.target_beneficiaries %>
-            <br />
-            Subsidy Percentage: <%= listing.subsidy_percentage %>
-            <br />
-            Contact Info: <%= listing.contact_info%>
+            Contact Info: <%= listing.contactInfo%>
           </p>
         </div>
       </div></a

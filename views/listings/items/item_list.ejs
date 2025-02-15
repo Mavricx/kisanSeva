@@ -17,17 +17,17 @@
         <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">
-            <b><%=listing.productType %></b>
             <br />
-            Price per kg: &#8377; <%= listing.pricePerKg %>
+            <i> <%= listing.owner.username %></i>
+            
+            <br />
+            Price per kg: &#8377; <%= listing.pricePerUnit %>
             <br />
             Farm Location: <%= listing.location %>
             <br />
             Product Quantity: <%= listing.productQuantity %>
             <br />
             Duration: <%= listing.duration %>
-            <br />
-            Contact Number: <%= listing.contactNumber %>
           </p>
         </div>
       </div></a
