@@ -20,7 +20,7 @@ const LocalStrategy = require('passport-local');
 const User = require('../models/user.js');
 const Schemes = require("../models/schemes.js");
 const Loans = require("../models/loans.js");
-const Items = require("../models/buy.js");
+const Items = require("../models/item.js");
 
 app.set("views", path.join(__dirname, '../views'));
 app.use(express.urlencoded({ extended: true }));

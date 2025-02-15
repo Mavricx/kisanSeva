@@ -1,11 +1,11 @@
 const Item = require("../models/item.js");
 
-module.export.allItems = async (req, res) => {
+module.exports.allItems = async (req, res) => {
     const allItems = await Item.find({});
     res.render("listings/items/item_list.ejs", { allItems });
 }
 
-module.export.showOneItem = async (req, res) => {
+module.exports.showOneItem = async (req, res) => {
     let { id } = req.params;
     try {
         const item = await Item.findById(id);
