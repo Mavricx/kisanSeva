@@ -42,15 +42,14 @@
         />
       </div>
       <div class="mb-3">
-        <label for="userType" class="form-label">Choose UserType</label>
-        <p>Choose among the type:Farmer,Individual Seller,Banker and ngo</p>
-        <input
-          id="userType"
-          type="text"
-          name="userType"
-          class="form-control"
-          required
-        />
+        <label for="userType" class="form-label">Choose User Type</label>
+        <select id="userType" name="userType" class="form-control" required>
+          <option value="" disabled selected>Select your option</option>
+          <option value="Farmer">Farmer</option>
+          <option value="Seller">Independent Seller</option>
+          <option value="Banker">Banker</option>
+          <option value="NGO">NGO</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>

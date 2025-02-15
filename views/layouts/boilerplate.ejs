@@ -43,5 +43,16 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="/public/js/script.js"></script>
+    <script>
+      function validateForm(event) {
+        var form = event.target;
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+      }
+    </script>
   </body>
 </html>

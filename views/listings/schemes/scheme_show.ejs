@@ -2,7 +2,7 @@
 <body>
   <div class="row mt-3">
     <div class="col-8 offset-3">
-      <h3>Scheme Details:</h3>
+      <h3>Scheme Details: 📃</h3>
     </div>
     <div class="card col" style="width: 20rem">
       <img
@@ -25,12 +25,12 @@
     <br />
     <div class="btns">
       <a
-        href="/listing/<%=listing.id%>/edit"
+        href="/listing/<%=scheme.id%>/edit"
         class="btn btn-dark col-1 offset-3 add-btn"
       >
         Apply</a
       >
-      <form action="/listing/<%=listing.id%>?_method=DELETE" method="post">
+      <form action="/listing/<%=scheme.id%>?_method=DELETE" method="post">
         <button class="btn btn-dark offset-5">Delete</button>
       </form>
     </div>

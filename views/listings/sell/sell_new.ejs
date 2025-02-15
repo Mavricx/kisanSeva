@@ -4,35 +4,48 @@
   <br />
   <div class="row">
     <div class="col-8 offset-2">
-      <h3>Create New Listing</h3>
+      <h3>Add New Product to Your Store🍀</h3>
 
-      <form method="post" action="/sells">
+      <form method="post" action="/sells" enctype="multipart/form-data">
         <div class="mb-3">
-          <label for="itemName" class="form-label">Item Name:</label>
+          <label for="title" class="form-label">Product Name:</label>
           <input
             type="text"
-            name="listing[itemName]"
+            name="newSell[title]"
             placeholder="Enter Item Name you want to sell"
             class="form-control"
             required
           />
         </div>
+
         <div class="mb-3">
-          <label for="image" class="form-label">Image URL:</label>
+          <label for="description" class="form-label">Description:</label>
+          <textarea
+            name="newSell[description]"
+            class="form-control"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Write a short note about the spot</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload a Image</label>
           <input
-            type="text"
-            name="listing[image]"
+            type="file"
+            name="newSell[image]"
             placeholder="Enter Image URL"
             class="form-control"
             required
           />
+          <div class="valid-feedback">
+            Default image will be placed in case of empty field
+          </div>
         </div>
-
         <div class="mb-3">
-          <label for="region" class="form-label">Region:</label>
+          <label for="region" class="form-label">Location of Product: </label>
           <input
             type="text"
-            name="listing[region]"
+            name="newSell[location]"
             class="form-control"
             placeholder="e.g: Jaipur, Rajasthan"
             required
@@ -43,24 +56,59 @@
             <label for="pricePerUnit" class="form-label">Price Per Unit:</label>
             <input
               type="number"
-              name="listing[pricePerUnit]"
+              name="newSell[pricePerUnit]"
               placeholder="e.g: 2000"
               class="form-control"
               required
             />
           </div>
           <div class="mb-3 col-md-4">
+            <label for="productQuantity" class="form-label"
+              >Product Quantity:</label
+            >
+            <input
+              type="number"
+              name="newSell[productQuantity]"
+              placeholder="e.g: 100"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="mb-3 col-md-4">
+            <label for="ProductType" class="form-label">Product Type:</label>
+            <select name="newSell[productType]" class="form-control" required>
+              <option value="" disabled selected>Select Product Type</option>
+              <option value="crop">Crop</option>
+              <option value="vegetables">Vegetables</option>
+              <option value="fruits">Fruits</option>
+              <option value="machinery">Machinery</option>
+              <option value="seeds">Seeds</option>
+              <option value="fertilizers">Fertilizers</option>
+            </select>
+          </div>
+          <div class="mb-3 col-md-4">
             <label for="minOrder" class="form-label">Minimum Order:</label>
             <input
               type="number"
-              name="listing[minOrder]"
+              name="newSell[minOrder]"
               placeholder="e.g: 10"
               class="form-control"
               required
             />
           </div>
+          <div class="mb-3 col-md-4">
+            <label for="contactDetail" class="form-label"
+              >Contact Detail(email/ph.no.):</label
+            >
+            <input
+              type="text"
+              name="newSell[contactDetail]"
+              placeholder="e.g: example@gmail.com or 9178123456"
+              class="form-control"
+              required
+            />
+          </div>
         </div>
-
         <br />
         <button type="submit" class="btn btn-dark add-btn">Add</button>
       </form>

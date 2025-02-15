@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <h3>Market Place</h3>
+  <h3>Market Place 🏪</h3>
   <!-- <form action="/listing/new" method="GET">
     <button>Create New Listing</button>
   </form> -->
@@ -19,15 +19,13 @@
           <p class="card-text">
             <br />
             <i> <%= listing.owner.username %></i>
-            
+
             <br />
-            Price per kg: &#8377; <%= listing.pricePerUnit %>
+            <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
             <br />
-            Farm Location: <%= listing.location %>
+            <b>Product of Location:</b> <%= listing.location %>
             <br />
-            Product Quantity: <%= listing.productQuantity %>
-            <br />
-            Duration: <%= listing.duration %>
+            <b>Product Quantity:</b> <%= listing.productQuantity %>
           </p>
         </div>
       </div></a

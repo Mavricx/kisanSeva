@@ -5,8 +5,8 @@
     <button>Create New Listing</button>
   </form> -->
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    <% for (let listing of sells){ %>
-    <a class="listing-link" href="/sells/<%=listing._id %>"
+    <% for (let listing of allSells){ %>
+    <a class="listing-link" href="/buys/<%=listing._id %>"
       ><div class="card col" style="width: 20rem">
         <img
           src="<%=listing.image %>"
@@ -17,13 +17,15 @@
         <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">
-            <b><%=listing.itemName %></b>
             <br />
-            &#8377; <%= listing.pricePerUnit %> / kg
+            <i> <%= listing.owner.username %></i>
+
             <br />
-            Region: <%= listing.region %>
+            <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
             <br />
-            Minimum Order: <%= listing.minOrder %>
+            <b>Product of Location:</b> <%= listing.location %>
+            <br />
+            <b>Product Quantity:</b> <%= listing.productQuantity %>
           </p>
         </div>
       </div></a
