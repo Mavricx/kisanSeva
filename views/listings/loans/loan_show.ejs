@@ -1,45 +1,42 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <div class="row mt-3">
-    <div class="col-8 offset-3">
-      <h3>Loan Details: 🪙</h3>
-    </div>
-    <div class="card col" style="width: 20rem">
-      <img
-      src="<%= loan.image%>"
-      class="card-img-top show-img"
-      alt="listing_image"
-    />
-      <div class="card-body">
-        <p class="card-text">
-          <b><%=loan.title %></b>
-          <br />
-          <%= loan.description %>
-          <br />
-          Loan Amount: &#8377; <%= loan.amount %>
-          <br />
-          Bank Name: <%= loan.bankName %>
-          <br />
-          Interest Rate: <%= loan.interestRate %>
-          <br />
-          Duration: <%= loan.duration %>
-          <br />
-          Bank Website: <%= loan.bankWebsite %>
-
-        </p>
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-7" style="text-align: center">
+        <h3 class="text-center">Loan Details: 🪙</h3>
+        <div class="card mb-4" style="width: 28rem">
+          <img
+            src="<%= loan.image %>"
+            class="card-img-top show-img"
+            alt="listing_image"
+          />
+          <div class="card-body">
+            <p class="card-text">
+              <b><%= loan.title.en %> | <%= loan.title.hi %></b>
+              <br />
+              <%= loan.description.en %>
+              <br />
+              <%= loan.description.hi %>
+              <br />
+              Loan Amount: &#8377; <%= loan.amount %>
+              <br />
+              Bank Name: <%= loan.bankName %>
+              <br />
+              Interest Rate: <%= loan.interestRate %>
+              <br />
+              Duration: <%= loan.duration %>
+              <br />
+              Bank Website: <%= loan.bankWebsite %>
+            </p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <a href="/listing/<%= loan.id %>/edit" class="btn btn-dark">Apply</a>
+          <form action="">
+            <button class="btn btn-dark">Not Interested</button>
+          </form>
+        </div>
       </div>
     </div>
-    <br />
-    <!-- <div class="btns">
-      <a
-        href="/listing/<%=loan.id%>/edit"
-        class="btn btn-dark col-1 offset-3 add-btn"
-      >
-        Apply</a
-      >
-      <form action="/listing/<%=loan.id%>?_method=DELETE" method="post">
-        <button class="btn btn-dark offset-5">Delete</button>
-      </form>
-    </div> -->
   </div>
 </body>

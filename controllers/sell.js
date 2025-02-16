@@ -1,7 +1,7 @@
 const Item = require("../models/item.js");
 
 module.exports.showAllSells = async (req, res, next) => { //get to all listings
-    const allSells = await Item.find({});
+    const allSells = await Item.find({ owner: req.user._id });
     res.render("listings/sell/sell_list.ejs", { allSells });
 }
 
@@ -63,7 +63,7 @@ module.exports.updateOneSell = async (req, res, next) => {
 
 module.exports.destroySell = async (req, res, next) => {
     let { id } = req.params;
-    let deletedSell = await Listing.findByIdAndDelete(id);
+    let deletedSell = await Item.findByIdAndDelete(id);
     req.flash("success", "Listing Deleted !!")
     console.log(deletedSell);
     res.redirect("/sales");

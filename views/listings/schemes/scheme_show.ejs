@@ -12,13 +12,15 @@
           />
           <div class="card-body">
             <p class="card-text">
-              <b><%= scheme.schemeName %></b>
+              <b><%= scheme.schemeName.en %> | <%=scheme.schemeName.hi %></b>
               <br />
-              Description: <%= scheme.description %>
+              <b>Description:</b> <%= scheme.description.en %>
+              <br />
+              <%=scheme.description.hi %>
               <br />
               <b>Organization:</b> <%= scheme.organization %>
               <br />
-              Contact info: <%= scheme.contactInfo %>
+              <b>Contact info:</b> <%= scheme.contactInfo %>
             </p>
           </div>
         </div>

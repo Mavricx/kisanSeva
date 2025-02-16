@@ -47,7 +47,7 @@ const itemSchema = new Schema({
         ref: "User"
     },
 
-    review: [
+    reviews: [
         {
             type: Schema.Types.ObjectId,
             ref: "Review",

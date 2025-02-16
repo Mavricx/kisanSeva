@@ -2,7 +2,7 @@ const Item = require("../models/item.js");
 
 module.exports.allItems = async (req, res) => {
     try {
-        const allItems = await Item.find({});
+        const allItems = await Item.find({ owner: { $ne: req.user._id } });
         res.render("listings/items/item_list.ejs", { allItems });
     } catch (err) {
         console.error(err);

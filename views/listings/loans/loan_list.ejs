@@ -6,7 +6,7 @@
   </form> -->
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for (let listing of loans){ %>
-    <a class="listing-link" href="/allLoans/<%=listing._id %>"
+    <a class="listing-link" href="/loans/<%=listing._id %>"
       ><div class="card col" style="width: 20rem">
         <img
           src="<%=listing.image %>"
@@ -16,7 +16,7 @@
         />
         <div class="card-body">
           <p class="card-text">
-            <b><%=listing.title %></b>
+            <b><%=listing.title.en %> | <%=listing.title.hi %></b>
             <br />
             Loan Amount: &#8377; <%= listing.amount %>
             <br />
