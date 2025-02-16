@@ -1,14 +1,21 @@
 const Item = require("../models/item.js");
 
 module.exports.allItems = async (req, res) => {
-    const allItems = await Item.find({});
-    res.render("listings/items/item_list.ejs", { allItems });
+    try {
+        const allItems = await Item.find({});
+        res.render("listings/items/item_list.ejs", { allItems });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
 }
 
 module.exports.showOneItem = async (req, res) => {
     let { id } = req.params;
     try {
-        const item = await Item.findById(id).populate({path:"reviews",populate:{path:"author"},}).populate("owner");
+        const item = await Item.findById(id)
+            .populate({ path: "reviews", populate: { path: "author" } })
+            .populate("owner");
         if (!item) {
             return res.status(404).send("The product not found");
         }

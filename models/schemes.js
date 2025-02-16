@@ -1,22 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const subsidySchemeSchema = new Schema({
     schemeName: {
-        type: String,
-        required: true
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
     },
     description: {
-        type: String,
-        required: true
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
     },
-    organization: {
-        type: String,
-        required: true
-    },
-    contactInfo: {
-        type: String,
-        required: true
-    },
+    organization: { type: String, required: true },
+    contactInfo: { type: String, required: true },
     image: {
         type: String,
         default:
@@ -28,6 +23,13 @@ const subsidySchemeSchema = new Schema({
     },
 });
 
-const SubsidyScheme = mongoose.model('Schemes', subsidySchemeSchema);
+// 🔍 Create an index for multilingual search
+subsidySchemeSchema.index({
+    "schemeName.en": "text",
+    "schemeName.hi": "text",
+    "description.en": "text",
+    "description.hi": "text",
+});
 
-module.exports = SubsidyScheme;
+const Schemes = mongoose.model("Schemes", subsidySchemeSchema);
+module.exports = Schemes;

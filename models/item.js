@@ -4,14 +4,12 @@ const Review = require('./review');
 const itemSchema = new Schema({
 
     title: {
-        type: String,
-        required: true,
-        intl: true,
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
     },
     description: {
-        type: String,
-        required: true,
-        intl: true,
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
     },
     image: {
         url: String,
@@ -20,34 +18,30 @@ const itemSchema = new Schema({
     location: {
         type: String,
         required: true,
+        trim: true
     },
     pricePerUnit: {
         type: Number,
         required: true
     },
-    
+
     productQuantity: {
         type: String,
         required: true
     },
     productType: {
-        type: String,
-        enum: ["crop", "vegetables", "fruits", "machinery", "seeds", "fertilizers",],
-        required: true
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
     },
 
     minOrder: {
         type: Number,
         required: true
     },
-
-
     contactDetail: {
         type: String,
         required: true
     },
-
-
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
@@ -59,6 +53,15 @@ const itemSchema = new Schema({
             ref: "Review",
         }
     ]
+});
+
+itemSchema.index({
+    "title.en": "text",
+    "title.hi": "text",
+    "description.en": "text",
+    "description.hi": "text",
+    "productType.en": "text",
+    "productType.hi": "text",
 });
 
 const Item = mongoose.model('Item', itemSchema);

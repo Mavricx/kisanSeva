@@ -3,14 +3,14 @@ const Schema = mongoose.Schema;
 
 const agriculturalLoanSchema = new Schema({
     title: {
-        type: String,
-        required: true,
-        intl: true
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
+
     },
     description: {
-        type: String,
-        required: true,
-        intl: true
+        en: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, required: true, trim: true, lowercase: true },
+
     },
 
     bankName: {
@@ -44,6 +44,13 @@ const agriculturalLoanSchema = new Schema({
     },
 });
 
-const AgriculturalLoan = mongoose.model('Loans', agriculturalLoanSchema);
+agriculturalLoanSchema.index({
+    "title.en": "text",
+    "title.hi": "text",
+    "description.en": "text",
+    "description.hi": "text",
+});
 
-module.exports = AgriculturalLoan;
+const Loans = mongoose.model('Loans', agriculturalLoanSchema);
+
+module.exports = Loans;

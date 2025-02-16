@@ -81,6 +81,7 @@ app.get("/dashboard", (req, res) => {
 })
 
 app.use("/items", itemRouter);
+app.use("/items/:id/reviews", reviewRouter)
 app.use("/sells", sellRouter);
 app.use("/sells/:id/reviews", reviewRouter)
 app.use("/loans", loanRouter);
