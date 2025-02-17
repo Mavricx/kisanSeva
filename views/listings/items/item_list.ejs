@@ -17,8 +17,11 @@
         <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">
+            <b><%= listing.title.en %> | <%= listing.title.hi %></b>
             <br />
-            <i> <%= listing.owner.username %></i>
+            <i>
+              <%= listing.owner ? listing.owner.username : "Unknown Seller" %>
+            </i>
 
             <br />
             <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>

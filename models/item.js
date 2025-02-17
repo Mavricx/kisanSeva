@@ -5,11 +5,11 @@ const itemSchema = new Schema({
 
     title: {
         en: { type: String, required: true, trim: true, lowercase: true },
-        hi: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, trim: true, lowercase: true },
     },
     description: {
         en: { type: String, required: true, trim: true, lowercase: true },
-        hi: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, trim: true, lowercase: true },
     },
     image: {
         url: String,
@@ -31,7 +31,7 @@ const itemSchema = new Schema({
     },
     productType: {
         en: { type: String, required: true, trim: true, lowercase: true },
-        hi: { type: String, required: true, trim: true, lowercase: true },
+        hi: { type: String, trim: true, lowercase: true },
     },
 
     minOrder: {

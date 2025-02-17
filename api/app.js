@@ -49,9 +49,18 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser((user, done) => {
+    done(null, user.id); // Store user ID in session
+});
 
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        done(null, user); // Attach user object to req.user
+    } catch (err) {
+        done(err);
+    }
+});
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -71,6 +80,10 @@ const loanRouter = require('../routes/loans.js');
 const schemesRouter = require('../routes/schemes.js');
 const reviewRouter = require('../routes/review.js');
 
+app.use((req, res, next) => {
+    res.locals.currUser = req.user;
+    next();
+});
 
 app.get("/", (req, res) => {
     res.render("listings/index.ejs")
@@ -78,6 +91,11 @@ app.get("/", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
     res.render("listings/dashboard.ejs")
+})
+
+app.get("/user", (req, res) => {
+    // console.log(res.locals.currUser)
+    res.send(req.user)
 })
 
 app.use("/items", itemRouter);
