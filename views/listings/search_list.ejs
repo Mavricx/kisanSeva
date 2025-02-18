@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate") %>
+<h3>Market Place 🏪</h3>
+<!-- <form action="/listing/new" method="GET">
+  <button>Create New Listing</button>
+</form> -->
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <% for (let listing of allItems){ %>
+  <a class="listing-link" href="/items/<%=listing._id %>"
+    ><div class="card col" style="width: 20rem">
+      <img
+        src="<%=listing.image.url %>"
+        class="card-img-top"
+        alt="listing_image"
+        style="height: 20rem"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b><%= listing.title.en %> | <%= listing.title.hi %></b>
+          <br />
+          <i>
+            <%= listing.owner ? listing.owner.username : "Unknown Seller" %>
+          </i>
+
+          <br />
+          <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
+          <br />
+          <b>Product of Location:</b> <%= listing.location %>
+          <br />
+          <b>Product Quantity:</b> <%= listing.productQuantity %>
+        </p>
+      </div>
+    </div></a
+  >
+  <% } %>
+</div>
+</body>

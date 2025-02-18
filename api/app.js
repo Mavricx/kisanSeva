@@ -79,7 +79,8 @@ const sellRouter = require('../routes/sell.js');
 const loanRouter = require('../routes/loans.js');
 const schemesRouter = require('../routes/schemes.js');
 const reviewRouter = require('../routes/review.js');
-
+const wrapAsync = require('../utils/wrapAsync.js');
+const Item = require("../models/item.js")
 app.use((req, res, next) => {
     res.locals.currUser = req.user;
     next();
@@ -93,10 +94,11 @@ app.get("/dashboard", (req, res) => {
     res.render("listings/dashboard.ejs")
 })
 
-app.get("/user", (req, res) => {
-    // console.log(res.locals.currUser)
-    res.send(req.user)
-})
+app.post("/search", wrapAsync(async (req, res) => {
+    let { voice } = req.body;
+    console.log(voice);
+    res.send(voice);
+}));
 
 app.use("/items", itemRouter);
 app.use("/items/:id/reviews", reviewRouter)

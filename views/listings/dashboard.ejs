@@ -594,6 +594,7 @@ nav.close ~ .dashboard .top{
         <br>
 
         <div class="card text-center here">
+              <form method="post" action="/search">
             <div class="card-header"><b>Talk2Text</b></div>
             <div class="card-body">
               <h5 class="card-title">Tap the mic and say something...</h5>
@@ -601,12 +602,13 @@ nav.close ~ .dashboard .top{
                 placeholder="Your text will appear here..."
                 class="form-control textb"
                 style="height: 100px"
+                name="voice"
               ></textarea>
               <br />
               <label for="languages" class="form-label">Choose a language:</label>
               <select
                 id="languages"
-                name="language"
+                name=""
                 class="form-select w-25 mx-auto"
                 value="en-IN"
               >
@@ -620,34 +622,35 @@ nav.close ~ .dashboard .top{
                 <option value="or-IN">Odia (India)</option>
                 <option value="ru-RU">Russian</option>
               </select>
-              <button href="#" class="btn btn-danger mt-2 mp" title="Start listening">
+              <button  class="btn btn-danger mt-2 mp" title="Start listening" type="button">
                 <i class="fa-solid fa-microphone"></i>
               </button>
-              <button href="#" class="btn btn-dark mt-2 stop" title="Stop listening">
+              <button class="btn btn-dark mt-2 stop" title="Stop listening" type="button">
                 <i class="fa-solid fa-stop"></i>
               </button>
               <button
-                href="#"
                 class="btn btn-warning mt-2 copy"
                 title="Copy this text"
+                type="button"
               >
                 <i class="fa-solid fa-copy"></i>
               </button>
               <button
-                href="#"
                 class="btn btn-secondary mt-2 clear"
                 title="Copy this text"
+                type="button"
               >
                 <i class="fa-solid fa-eraser"></i>
               </button>
             </div>
+            <br>
+            <button type="submit" class="btn btn-secondary mt-2">Search</button>
+        </form>
           </div>
     </section>
 
-
-
-<script >
-  let element = document.querySelector(".textb");
+<script>
+let element = document.querySelector(".textb");
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.continuous = true;
 const mic = document.querySelector(".mp");
@@ -724,8 +727,8 @@ sidebarToggle.addEventListener("click", () => {
 })
 
 
-    </script>
-    </script>
+</script>
+<script src="./script2.js"></script>
     </body>
     </html>
 </html>
