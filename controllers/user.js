@@ -33,7 +33,7 @@ module.exports.renderLoginForm = (req, res) => {
 
 //for login
 module.exports.login = async (req, res) => {
-    req.flash("success", "You are logged into Wanderlust.");
+    req.flash("success", "You are logged into KisanSeva.");
     redirectUrl = res.locals.redirectUrl || "/dashboard";
     res.redirect(redirectUrl);
 }
