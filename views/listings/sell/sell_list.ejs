@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <h3>All your sells</h3>
+  <h3>All your Listed products</h3>
   <!-- <form action="/listing/new" method="GET">
     <button>Create New Listing</button>
   </form> -->
@@ -9,7 +9,7 @@
     <a class="listing-link" href="/sells/<%=listing._id %>"
       ><div class="card col" style="width: 20rem">
         <img
-          src="<%=listing.image %>"
+          src="<%=listing.image.url %>"
           class="card-img-top"
           alt="listing_image"
           style="height: 20rem"
@@ -18,8 +18,7 @@
         <div class="card-body">
           <p class="card-text">
             <br />
-            <i> <%= listing.owner.username %></i>
-
+            <b><%= listing.title.en %> | <%= listing.title.hi %></b>
             <br />
             <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
             <br />

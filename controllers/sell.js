@@ -2,8 +2,15 @@ const Item = require("../models/item.js");
 
 module.exports.showAllSells = async (req, res, next) => {
     try {
-        const allSells = await Item.find({});
-        res.render("listings/sell/sell_list.ejs", { allSells });
+        if (req.user) {
+            const allSells = await Item.find({ "owner" : req.user._id });
+            res.render("listings/sell/sell_list.ejs", { allSells });
+        }
+        else {
+            req.flash("error", "Please Login to view your store.")
+            res.redirect("/dashboard")
+        }
+
     } catch (err) {
         console.error(err);
         req.flash("error", "Failed to load listings.");

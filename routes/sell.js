@@ -12,7 +12,7 @@ const upload = multer({ storage })
 
 
 router.route("/")
-    .get(wrapAsync(sellController.showAllSells))//all listing route
+    .get(isLoggedIn, wrapAsync(sellController.showAllSells))//all listing route
     .post(validateItem, upload.single("item[image]"), isLoggedIn, wrapAsync(sellController.createSell))//post listing route
 
 //add new listing route
