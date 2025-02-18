@@ -80,7 +80,6 @@ const loanRouter = require('../routes/loans.js');
 const schemesRouter = require('../routes/schemes.js');
 const reviewRouter = require('../routes/review.js');
 const searchRouter = require("../routes/search.js")
-const wrapAsync = require('../utils/wrapAsync.js');
 const Item = require("../models/item.js")
 app.use((req, res, next) => {
     res.locals.currUser = req.user;

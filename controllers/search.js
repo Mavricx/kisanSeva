@@ -9,7 +9,7 @@ module.exports.searchPost = async (req, res) => {
 
 module.exports.searchGet = async (req, res) => {
     try {
-        const query = req.query.voice;
+        const query = req.query.voice.toLowerCase().trim();
         if (!query) return res.status(400).json({ message: "Query is required!" });
 
         const results = await Item.find({

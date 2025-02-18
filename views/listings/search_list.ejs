@@ -1,5 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <h2>Search Result for <%= query %>: ⬇️</h2>
+<% if(results.length!=0){ %>
 <h3>Items from Market Place</h3>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
   <% for (let listing of results){ %>
@@ -32,8 +33,10 @@
   >
   <% } %>
 </div>
+<% } %>
 <hr>
 <hr>
+<% if(loanResult.length!=0){ %>
 <h3>Loans found for this: 💰</h3>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for (let listing of loanResult){ %>
@@ -64,8 +67,10 @@
     >
     <% } %>
   </div>
+  <% } %>
   <hr>
   <hr>
+  <% if(schemesResult.length!=0){ %>
   <h3>Schemes Found 📜</h3>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for (let listing of schemesResult){ %>
@@ -92,4 +97,5 @@
     >
     <% } %>
   </div>
+  <% } %>
 </body>
