@@ -1,10 +1,8 @@
 <% layout("/layouts/boilerplate") %>
-<h3>Market Place 🏪</h3>
-<!-- <form action="/listing/new" method="GET">
-  <button>Create New Listing</button>
-</form> -->
+<h2>Search Result for <%= query %>: ⬇️</h2>
+<h3>Items from Market Place</h3>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-  <% for (let listing of allItems){ %>
+  <% for (let listing of results){ %>
   <a class="listing-link" href="/items/<%=listing._id %>"
     ><div class="card col" style="width: 20rem">
       <img
@@ -34,4 +32,64 @@
   >
   <% } %>
 </div>
+<hr>
+<hr>
+<h3>Loans found for this: 💰</h3>
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let listing of loanResult){ %>
+    <a class="listing-link" href="/loans/<%=listing._id %>"
+      ><div class="card col" style="width: 20rem">
+        <img
+          src="<%=listing.image %>"
+          class="card-img-top"
+          alt="listing_image"
+          style="height: 20rem"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.title.en %> | <%=listing.title.hi %></b>
+            <br />
+            Loan Amount: &#8377; <%= listing.amount %>
+            <br />
+            Bank Name: <%= listing.bankName %>
+            <br />
+            Interest Rate: <%= listing.interestRate %>
+            <br />
+            Duration: <%= listing.duration %>
+            <br />
+            Bank Website: <%= listing.bankWebsite %>
+          </p>
+        </div>
+      </div></a
+    >
+    <% } %>
+  </div>
+  <hr>
+  <hr>
+  <h3>Schemes Found 📜</h3>
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let listing of schemesResult){ %>
+    <a class="listing-link" href="/schemes/<%=listing._id %>"
+      ><div class="card col" style="width: 20rem">
+        <img
+          src="<%=listing.image %>"
+          class="card-img-top"
+          alt="listing_image"
+          style="height: 20rem"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.schemeName.en %> | <%=listing.schemeName.hi %></b>
+            <br />
+            <b>Description:</b> <%= listing.description.en %>
+            <br />
+            Organization: <%= listing.organization %>
+            <br />
+            Contact Info: <%= listing.contactInfo%>
+          </p>
+        </div>
+      </div></a
+    >
+    <% } %>
+  </div>
 </body>
