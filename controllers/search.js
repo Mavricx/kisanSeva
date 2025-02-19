@@ -3,45 +3,77 @@ const Loan = require("../models/loans.js");
 const Schemes = require("../models/schemes.js");
 
 module.exports.searchPost = async (req, res) => {
-    let { voice } = req.body;
-    res.redirect(`/search?voice=${voice}`);
+    let voice = req.body.voice;
+    let lang = req.body.lang;
+
+    res.redirect(`/search?voice=${voice}&lang=${lang}`);
 }
+
+const extractKeyword = (query, language) => {
+    if (!query || typeof query !== "string") return null;
+
+    const words = query.trim().split(/\s+/); // Split by spaces
+
+    if (language === "en-IN") {
+        return words.length > 0 ? words[words.length - 1] : null; // Last word
+    } else if (language === "hi-IN") {
+        return words.length >= 3 ? words[2] : null; // Third word
+    }
+    return null;
+};
+
 
 module.exports.searchGet = async (req, res) => {
     try {
-        const query = req.query.voice.toLowerCase().trim();
-        if (!query) return res.status(400).json({ message: "Query is required!" });
+        const { voice, lang } = req.query;
 
+        if (!voice || !lang) {
+            return res.status(400).json({ message: "Query (voice) and language are required!" });
+        }
+
+        const keyword = extractKeyword(voice, lang);
+
+        if (!keyword) {
+            return res.status(400).json({ message: "Could not extract a valid keyword!" });
+        }
+
+        // 🔄 Redirect if the keyword is "sell" or "बेचना"
+        if (keyword.toLowerCase() === "sell" || keyword === "बेचना") {
+            return res.redirect("/sells/new");
+        }
+
+        // 🌟 Perform search query using regex
         const results = await Item.find({
             $or: [
-                { "title.en": { $regex: query, $options: "i" } },
-                { "title.hi": { $regex: query, $options: "i" } },
-                { "description.en": { $regex: query, $options: "i" } },
-                { "description.hi": { $regex: query, $options: "i" } },
-                { "productType.en": { $regex: query, $options: "i" } },
-                { "productType.hi": { $regex: query, $options: "i" } },
+                { "title.en": { $regex: keyword, $options: "i" } },
+                { "title.hi": { $regex: keyword, $options: "i" } },
+                { "description.en": { $regex: keyword, $options: "i" } },
+                { "description.hi": { $regex: keyword, $options: "i" } },
+                { "productType.en": { $regex: keyword, $options: "i" } },
+                { "productType.hi": { $regex: keyword, $options: "i" } },
             ],
         });
 
+
         const loanResult = await Loan.find({
             $or: [
-                { "title.en": { $regex: query, $options: "i" } },
-                { "title.hi": { $regex: query, $options: "i" } },
-                { "description.en": { $regex: query, $options: "i" } },
-                { "description.hi": { $regex: query, $options: "i" } },
+                { "title.en": { $regex: voice, $options: "i" } },
+                { "title.hi": { $regex: voice, $options: "i" } },
+                { "description.en": { $regex: voice, $options: "i" } },
+                { "description.hi": { $regex: voice, $options: "i" } },
             ],
         });
 
         const schemesResult = await Schemes.find({
             $or: [
-                { "schemeName.en": { $regex: query, $options: "i" } },
-                { "schemeName.hi": { $regex: query, $options: "i" } },
-                { "description.en": { $regex: query, $options: "i" } },
-                { "description.hi": { $regex: query, $options: "i" } },
+                { "schemeName.en": { $regex: voice, $options: "i" } },
+                { "schemeName.hi": { $regex: voice, $options: "i" } },
+                { "description.en": { $regex: voice, $options: "i" } },
+                { "description.hi": { $regex: voice, $options: "i" } },
             ],
         });
 
-        res.render("listings/search_list.ejs", { results, loanResult, schemesResult, query });
+        res.render("listings/search_list.ejs", { results, loanResult, schemesResult, voice });
 
     } catch (error) {
         console.error(error);
