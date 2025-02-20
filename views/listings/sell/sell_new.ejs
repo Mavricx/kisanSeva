@@ -6,7 +6,7 @@
     <div class="col-8 offset-2">
       <h3>Add New Product to Your Store🍀</h3>
 
-      <form method="post" action="/sells" enctype="multipart/form-data">
+      <form method="post" action="/sells">
         <div class="mb-3">
           <label for="title" class="form-label">Product Name:</label>
           <input
@@ -31,11 +31,10 @@
         <div class="mb-3">
           <label for="image" class="form-label">Upload a Image</label>
           <input
-            type="file"
-            name="newSell[image]"
+            type="text"
+            name="newSell[image][url]"
             placeholder="Enter Image URL"
             class="form-control"
-            required
           />
           <div class="valid-feedback">
             Default image will be placed in case of empty field
@@ -63,18 +62,24 @@
             />
           </div>
           <div class="mb-3 col-md-4">
-            <label for="productQuantity" class="form-label">Product Quantity:</label>
+            <label for="productQuantity" class="form-label"
+              >Product Quantity:</label
+            >
             <input
-              type="number"
+              type="text"
               name="newSell[productQuantity]"
-              placeholder="e.g: 100"
+              placeholder="e.g: 100 kg"
               class="form-control"
               required
             />
           </div>
           <div class="mb-3 col-md-4">
             <label for="ProductType" class="form-label">Product Type:</label>
-            <select name="newSell[productType]" class="form-control" required>
+            <select
+              name="newSell[productType][en]"
+              class="form-control"
+              required
+            >
               <option value="" disabled selected>Select Product Type</option>
               <option value="crop">Crop</option>
               <option value="vegetables">Vegetables</option>
@@ -95,7 +100,9 @@
             />
           </div>
           <div class="mb-3 col-md-4">
-            <label for="contactDetail" class="form-label">Contact Detail(email/ph.no.):</label>
+            <label for="contactDetail" class="form-label"
+              >Contact Detail(email/ph.no.):</label
+            >
             <input
               type="text"
               name="newSell[contactDetail]"

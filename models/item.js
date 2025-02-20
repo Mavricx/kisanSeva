@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Review = require('./review');
-const itemSchema = new Schema({
 
+const itemSchema = new Schema({
     title: {
         en: { type: String, required: true, trim: true, lowercase: true },
         hi: { type: String, trim: true, lowercase: true },
@@ -11,48 +11,53 @@ const itemSchema = new Schema({
         en: { type: String, required: true, trim: true, lowercase: true },
         hi: { type: String, trim: true, lowercase: true },
     },
-    image: {
-        url: String,
-        filename: String
-    },
-    location: {
+image: {
+    url: {
         type: String,
+        default:
+            "https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=800",
+        set: (v) =>
+            v === ""
+                ? "https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=800"
+                : v,
+    },
+},
+
+location: {
+    type: String,
         required: true,
-        trim: true
-    },
-    pricePerUnit: {
-        type: Number,
+            trim: true
+},
+pricePerUnit: {
+    type: Number,
         required: true
-    },
-
-    productQuantity: {
-        type: String,
+},
+productQuantity: {
+    type: String,
         required: true
-    },
-    productType: {
-        en: { type: String, required: true, trim: true, lowercase: true },
-        hi: { type: String, trim: true, lowercase: true },
-    },
-
-    minOrder: {
-        type: Number,
+},
+productType: {
+    en: { type: String, required: true, trim: true, lowercase: true },
+    hi: { type: String, trim: true, lowercase: true },
+},
+minOrder: {
+    type: Number,
         required: true
-    },
-    contactDetail: {
-        type: String,
+},
+contactDetail: {
+    type: String,
         required: true
-    },
-    owner: {
-        type: Schema.Types.ObjectId,
+},
+owner: {
+    type: Schema.Types.ObjectId,
         ref: "User"
-    },
-
-    reviews: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Review",
-        }
-    ]
+},
+reviews: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+    }
+]
 });
 
 itemSchema.index({

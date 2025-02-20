@@ -1,7 +1,7 @@
 const Item = require("../models/item.js");
 const Review = require("../models/review.js");
 const ExpressError = require("../utils/ExpressError.js");
-const { itemSchema, reviewSchema, loanSchema, schemeSchema } = require("./schema.js");
+const { sellSchema, reviewSchema, loanSchema, schemeSchema } = require("./schema.js");
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -34,8 +34,8 @@ module.exports.isOwner = async (req, res, next) => {
     next();
 }
 
-module.exports.validateItem = (req, res, next) => {
-    let { error } = itemSchema.validate(req.body);
+module.exports.validateSell = (req, res, next) => {
+    let { error } = sellSchema.validate(req.body);
 
     if (error) {
         let errMsg = error.details.map((el) => el.message).join(",");
