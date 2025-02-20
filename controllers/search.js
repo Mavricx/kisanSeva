@@ -14,7 +14,7 @@ const extractKeyword = (query, language) => {
 
     const words = query.trim().split(/\s+/); // Split by spaces
 
-    if (language === "en-IN") {
+    if (language === "en-IN" || words.length <= 3) {
         return words.length > 0 ? words[words.length - 1] : null; // Last word
     } else if (language === "hi-IN") {
         return words.length >= 3 ? words[2] : null; // Third word
