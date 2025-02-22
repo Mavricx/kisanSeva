@@ -1,38 +1,197 @@
 <% layout("/layouts/boilerplate") %>
-<body>
-  <h3>Market Place 🏪</h3>
-  <!-- <form action="/listing/new" method="GET">
-    <button>Create New Listing</button>
-  </form> -->
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    <% for (let listing of allItems){ %>
-    <a class="listing-link" href="/items/<%=listing._id %>"
-      ><div class="card col" style="width: 20rem">
-        <img
-          src="<%=listing.image.url %>"
-          class="card-img-top"
-          alt="listing_image"
-          style="height: 20rem"
-        />
-        <div class="card-img-overlay"></div>
-        <div class="card-body">
-          <p class="card-text">
-            <b><%= listing.title.en %> | <%= listing.title.hi %></b>
-            <br />
-            <i>
-              <%= listing.owner ? listing.owner.username : "Unknown Seller" %>
-            </i>
+<style>
+  /* Global Styles */
+ 
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
 
-            <br />
-            <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
-            <br />
-            <b>Product of Location:</b> <%= listing.location %>
-            <br />
-            <b>Product Quantity:</b> <%= listing.productQuantity %>
-          </p>
+.marketplace-container {
+  padding: 0.3rem;
+  max-width: 1937px;
+  margin: 0 -108px;
+}
+
+.marketplace-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Cards */
+.card {
+  border: none !important;
+  border-radius: 15px !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  height: 250px; /* Fixed height for all images */
+  width: 100%; /* Ensure the container takes full width */
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  
+  text-decoration: none;
+}
+
+.card-body {
+  padding: 1.5rem !important;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.card-text i {
+  margin-right: 0.5rem;
+  color: #48b370; /* Light green */
+}
+.view-details-btn {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.view-details-btn:hover {
+    background: #15803d;
+}
+
+.arrow {
+    margin-left: 0.5rem;
+}
+
+.listing-link {
+  text-decoration: none;
+  color: inherit;
+}
+.listing-link:hover {
+  text-decoration: none; /* Removes underline on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .marketplace-title {
+    font-size: 2rem;
+  }
+
+  .card-image {
+    height: 200px; /* Adjusted height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .marketplace-title {
+    font-size: 1.75rem;
+  }
+
+  .card-image {
+    height: 150px; /* Adjusted height for mobile screens */
+  }
+}
+</style>
+<body>
+  <div class="marketplace-container">
+    <h3 class="marketplace-title">Market Place 🏪</h3>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+      <% for (let listing of allItems){ %>
+      <a class="listing-link" href="/items/<%=listing._id %>">
+        <div class="card">
+          <div class="card-image">
+            <img
+              src="<%=listing.image.url %>"
+              class="card-img-top"
+              alt="listing_image"
+              loading="lazy"
+              onerror="this.src='/images/placeholder.jpg';"
+            />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+       
+              <%= listing.title.en %> 
+              <br>
+              <p></p>
+               <%= listing.title.hi %>
+            </h5>
+            <p class="card-text">
+              <i class="fas fa-user"></i> <%= listing.owner ? listing.owner.username : "Unknown Seller" %>
+              <br />
+              <i class="fas fa-rupee-sign"></i> <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
+              <br />
+              <i class="fas fa-map-marker-alt"></i> <b>Location:</b> <%= listing.location %>
+              <br />
+              <i class="fas fa-box"></i> <b>Quantity:</b> <%= listing.productQuantity %>
+              <br />
+              <br />
+              <button class="view-details-btn">
+                View Details
+                <span class="arrow">→</span>
+            </button>
+            </p>
+          </div>
         </div>
-      </div></a
-    >
-    <% } %>
+      </a>
+      <% } %>
+    </div>
   </div>
 </body>

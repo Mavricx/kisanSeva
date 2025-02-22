@@ -1,34 +1,182 @@
 <% layout("/layouts/boilerplate") %>
+<style>
+  /* Global Styles */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.listed-products-container {
+  padding: 0.3rem;
+  max-width: 1937px;
+  margin: 0 -108px;
+}
+
+.listed-products-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Cards */
+.product-card {
+  border: none !important;
+  border-radius: 15px !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  height: 250px; /* Fixed height for all images */
+  width: 100%; /* Ensure the container takes full width */
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.card-body {
+  padding: 1.5rem !important;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.card-text i {
+  margin-right: 0.5rem;
+  color: #48b370; /* Light green */
+}
+
+.view-details-btn {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.view-details-btn:hover {
+    background: #15803d;
+    text-decoration: none;
+    color: white;
+}
+
+.arrow {
+    margin-left: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .listed-products-title {
+    font-size: 2rem;
+  }
+
+  .card-image {
+    height: 200px; /* Adjusted height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .listed-products-title {
+    font-size: 1.75rem;
+  }
+
+  .card-image {
+    height: 150px; /* Adjusted height for mobile screens */
+  }
+}
+</style>
 <body>
-  <h3>All your Listed products</h3>
-  <!-- <form action="/listing/new" method="GET">
-    <button>Create New Listing</button>
-  </form> -->
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    <% for (let listing of allSells){ %>
-    <a class="listing-link" href="/sells/<%=listing._id %>"
-      ><div class="card col" style="width: 20rem">
-        <img
-          src="<%= listing.image.url %>"
-          class="card-img-top"
-          alt="listing_image"
-          style="height: 20rem"
-        />
-        <div class="card-img-overlay"></div>
-        <div class="card-body">
-          <p class="card-text">
-            <br />
-            <b><%= listing.title.en %> | <%= listing.title.hi %></b>
-            <br />
-            <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
-            <br />
-            <b>Product of Location:</b> <%= listing.location %>
-            <br />
-            <b>Product Quantity:</b> <%= listing.productQuantity %>
-          </p>
+  <div class="listed-products-container">
+    <h3 class="listed-products-title">All Your Listed Products 🌱</h3>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+      <% for (let listing of allSells){ %>
+      <div class="col">
+        <div class="card product-card">
+          <div class="card-image">
+            <img
+              src="<%= listing.image.url %>"
+              class="card-img-top"
+              alt="listing_image"
+              loading="lazy"
+              onerror="this.src='/images/placeholder.jpg';"
+            />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= listing.title.en %> | <%= listing.title.hi %>
+            </h5>
+            <p class="card-text">
+              <i class="fas fa-user"></i> <%= listing.owner ? listing.owner.username : "Unknown Seller" %>
+              <br />
+              <i class="fas fa-rupee-sign"></i> <b>Price per Unit:</b> &#8377; <%= listing.pricePerUnit %>
+              <br />
+              <i class="fas fa-map-marker-alt"></i> <b>Location:</b> <%= listing.location %>
+              <br />
+              <i class="fas fa-box"></i> <b>Quantity:</b> <%= listing.productQuantity %>
+              <br />
+              <br />
+              <a href="/sells/<%=listing._id %>" class="view-details-btn">
+                View Details
+                <span class="arrow">→</span>
+              </a>
+            </p>
+          </div>
         </div>
-      </div></a
-    >
-    <% } %>
+      </div>
+      <% } %>
+    </div>
   </div>
 </body>

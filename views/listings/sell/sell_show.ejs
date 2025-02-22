@@ -1,139 +1,236 @@
 <% layout("/layouts/boilerplate") %>
+<style>
+  /* Global Styles */
+  body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(135deg, #e6f5e6, #f0f8f0);
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .listing-details-container {
+    padding: 2rem 1rem; /* Reduced side padding */
+    max-width: 1400px; /* Increased width */
+    margin: 0 auto;
+  }
+
+  .listing-details-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .listing-card {
+    border: none !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    height: auto; /* Increased height for the image */
+    border-right: 8px solid #f0f8f0; /* Light green border */
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.3s ease;
+  }
+
+  .listing-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+  .card-body {
+    flex: 2;
+    padding: 2rem !important; /* Increased padding */
+  }
+
+  .card-title {
+    font-size: 1.75rem; /* Increased font size */
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1.5rem; /* Increased margin */
+  }
+
+  .card-text {
+    font-size: 1.1rem; /* Increased font size */
+    color: #555;
+    line-height: 1.8; /* Increased line height */
+  }
+
+  .card-text i {
+    margin-right: 0.5rem;
+    color: #48b370; /* Light green */
+  }
+
+  .btn-success {
+    background-color: #48b370;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px; /* Increased padding */
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-success:hover {
+    background-color: #3a9e5f;
+    transform: translateY(-2px);
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px; /* Increased padding */
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+  }
+
+  .btn-dark {
+    background-color: #2c3e50;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px; /* Increased padding */
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-dark:hover {
+    background-color: #1e2a38;
+    transform: translateY(-2px);
+  }
+
+  .review-card {
+    border: none !important;
+    border-radius: 15px !important;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.3rem;
+    padding: 1.5rem; /* Increased padding */
+  }
+
+  .review-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .review-card .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .starability-result {
+    font-size: 1.25rem;
+    color: #ffc107; /* Yellow for stars */
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .listing-details-title {
+      font-size: 2rem;
+    }
+
+    .listing-card {
+      flex-direction: column;
+    }
+
+    .card-image {
+      height: 300px; /* Adjusted height for smaller screens */
+      border-right: none;
+      border-bottom: 8px solid #f0f8f0; /* Light green border */
+    }
+
+    .card-body {
+      padding: 1.5rem !important; /* Adjusted padding for smaller screens */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .listing-details-title {
+      font-size: 1.75rem;
+    }
+
+    .card-image {
+      height: 250px; /* Adjusted height for mobile screens */
+    }
+  }
+</style>
 <body>
-  <div class="container mt-3">
+  <div class="listing-details-container">
+    <h3 class="listing-details-title">Listing Details: 🌿</h3>
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <h3 class="text-center">Listing Details: 🌿</h3>
-        <div class="card mb-4">
-          <img
-            src="<%= sell.image.url %>"
-            class="card-img-top show-img"
-            alt="listing_image"
-          />
+      <div class="col-md-12"> <!-- Increased width -->
+        <div class="card listing-card">
+          <div class="card-image">
+            <img
+              src="<%= sell.image.url %>"
+              class="card-img-top"
+              alt="listing_image"
+              loading="lazy"
+              onerror="this.src='/images/placeholder.jpg';"
+            />
+          </div>
           <div class="card-body">
+            <h5 class="card-title">
+              <%= sell.title.en %> | <%= sell.title.hi %>
+            </h5>
             <p class="card-text">
+              <b>Description:</b>
               <br />
-              <b>Item Name:</b> <%= sell.title.en %> | <%=sell.title.hi %>
+              <%= sell.description.en %>
               <br />
-              <p><%= sell.description.en%></p>
-              <br>
-              <p><%=sell.description.hi %></p>
-              <br />
+              <%= sell.description.hi %>
+            </p>
+            <p class="card-text">
               <b>Price Per Unit:</b> &#8377; <%= sell.pricePerUnit %>
               <br />
               <b>Product Location:</b> <%= sell.location %>
               <br />
               <b>Product Quantity:</b> <%= sell.productQuantity %>
               <br />
-              <b>Contact:</b> <%= sell.contactDetail %>
-              <br />
               <b>Minimum Order Quantity:</b> <%= sell.minOrder %>
+              <br />
+              <b>Contact:</b> <%= sell.contactDetail %>
             </p>
-          </div>
-          <% if(currUser && currUser._id.equals(sell.owner._id)) { %>
-          <div class="d-flex justify-content-between mb-3">
-            <a href="/sells/<%= sell.id %>/edit" class="btn btn-dark">Edit</a>
-            <form action="/sells/<%= sell.id %>?_method=DELETE" method="post">
-              <button class="btn btn-dark">Delete</button>
-            </form>
-          </div>
-          <% } %>
-        </div>
-        <hr />
-        <div class="mb-3">
-          <% if(currUser) { %>
-          <h4>Leave a Review</h4>
-          <form
-            action="/sells/<%= sell.id %>/reviews"
-            method="POST"
-            novalidate
-            class="needs-validation"
-            onsubmit="validateForm(event)"
-          >
-            <div class="mb-3 mt-3">
-              <label for="rating" class="form-label">Rating</label>
-              <fieldset class="starability-slot">
-                <input
-                  type="radio"
-                  id="no-rate"
-                  class="input-no-rate"
-                  name="review[rating]"
-                  value="1"
-                  checked
-                  aria-label="No rating."
-                />
-                <input
-                  type="radio"
-                  id="first-rate1"
-                  name="review[rating]"
-                  value="1"
-                />
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input
-                  type="radio"
-                  id="first-rate2"
-                  name="review[rating]"
-                  value="2"
-                />
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input
-                  type="radio"
-                  id="first-rate3"
-                  name="review[rating]"
-                  value="3"
-                />
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input
-                  type="radio"
-                  id="first-rate4"
-                  name="review[rating]"
-                  value="4"
-                />
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input
-                  type="radio"
-                  id="first-rate5"
-                  name="review[rating]"
-                  value="5"
-                />
-                <label for="first-rate5" title="Amazing">5 stars</label>
-              </fieldset>
-            </div>
-            <div class="mb-3 mt-3">
-              <label for="comments" class="form-label">Comments</label>
-              <textarea
-                name="review[comment]"
-                id="comment"
-                cols="30"
-                rows="4"
-                class="form-control"
-                required
-              ></textarea>
-              <div class="invalid-feedback">Please Add Some Comments.</div>
-            </div>
-            <button class="btn btn-outline-dark" formnovalidate>Submit</button>
-          </form>
-          <% } %>
-          <hr />
-          <p><b>All Reviews</b></p>
-          <div class="row">
-            <% for(review of sell.reviews){ %>
-            <div class="card col-5 ms-3 mb-3">
-              <div class="card-body">
-                <p class="card-title"><i>@<%= review.author.username %></i></p>
-                <p class="starability-result" data-rating="<%= review.rating %>"></p>
-                <p class="card-text"><%= review.comment %></p>
-              </div>
-              <form
-                method="POST"
-                action="/sells/<%= sell._id %>/reviews/<%= review._id %>?_method=DELETE"
-                class="mb-3"
-              >
-                <button class="btn btn-sm btn-dark">Delete</button>
+            <% if(currUser && currUser._id.equals(sell.owner._id)) { %>
+            <div class="d-flex justify-content-between mb-3">
+              <a href="/sells/<%= sell.id %>/edit" class="btn btn-dark">Edit</a>
+              <form action="/sells/<%= sell.id %>?_method=DELETE" method="post">
+                <button class="btn btn-dark">Delete</button>
               </form>
             </div>
             <% } %>
           </div>
+        </div>
+        <hr />     
         </div>
       </div>
     </div>

@@ -1,14 +1,100 @@
-<footer>
-    <div class="f-info">
-      <div class="f-info-socials">
-          <i class="fa-brands fa-square-facebook"></i>
-          <i class="fa-brands fa-square-instagram"></i>
-          <i class="fa-brands fa-linkedin"></i>
+<style>
+  /* Footer Styles */
+  .footer {
+    background: linear-gradient(135deg, #111827, #1f2937); /* Dark gradient */
+    color: white;
+    padding: 1.5rem 1rem; /* Further reduced padding */
+    width: 100%;
+    margin: 2rem 0 0; /* Added margin at the top */
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem; /* Further reduced margin */
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer .logo-text {
+    color: white;
+    font-size: 1.25rem; /* Slightly smaller font size */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer .logo-text i {
+    color: #48b370; /* Light green for the wheat icon */
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem; /* Reduced gap */
+  }
+
+  .social-links a {
+    color: white;
+    font-size: 1.25rem; /* Slightly smaller icons */
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .social-links a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+
+  .footer-bottom {
+    padding-top: 1rem; /* Further reduced padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.875rem; /* Slightly smaller font size */
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-top {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="logo">
+        <span class="logo-text">Kisan Seva <i class="fa-solid fa-wheat-awn"></i></span>
       </div>
-      <div class="f-info-brand">&copy;AgriTech Private Limited</div>
-      <div class="f-info-links">
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
-          
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p>© <span id="currentYear"></span> AgriTech. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Automatically update the current year in the footer
+  document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
