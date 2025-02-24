@@ -226,7 +226,7 @@
              <p><%=item.description.or %></p> 
               <br>
 
-              <b>Price Per Unit:</b> &#8377; <%= item.pricePerKg %>
+              <b>Price Per Unit:</b> &#8377; <%= item.pricePerUnit%>
               <br />
               <b>Product Location:</b> <%= item.location %>
               <br />
@@ -238,7 +238,7 @@
             </p>
             <div class="d-flex justify-content-center mb-3">
               <a href="" class="btn  btn-success mr-3 "> Ready To Buy</a>
-              <form method="post">
+              <form method="get" action="/items">
                 <button class="btn btn-danger">Not Interested</button>
               </form>
             </div>

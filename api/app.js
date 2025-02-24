@@ -33,16 +33,16 @@ async function main() {
 }
 const MongoStore = require("connect-mongo");
 
-// const sessionOptions = {
-//     secret: "thisisnotagoodsecret",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-//         maxAge: 7 * 24 * 60 * 60 * 1000,
-//         httpOnly: true,
-//     }
-// }
+const sessionOptions = {
+    secret: "thisisnotagoodsecret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    }
+}
 
 // app.use(
 //     session({
@@ -61,19 +61,19 @@ const MongoStore = require("connect-mongo");
 //         },
 //     })
 // );
-const sessionOptions = {
-    secret: "thisisnotagoodsecret",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: dbUrl }),
-    cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Only secure in production
-        sameSite: "lax",
-    },
-};
+// const sessionOptions = {
+//     secret: "thisisnotagoodsecret",
+//     resave: false,
+//     saveUninitialized: false,
+//     store: MongoStore.create({ mongoUrl: dbUrl }),
+//     cookie: {
+//         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+//         maxAge: 7 * 24 * 60 * 60 * 1000,
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === "production", // Only secure in production
+//         sameSite: "lax",
+//     },
+// };
 app.use(session(sessionOptions));
 
 app.use(flash());
