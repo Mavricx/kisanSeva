@@ -1,121 +1,228 @@
 <% layout("/layouts/boilerplate") %>
+<style>
+  /* Global Styles */
+  body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(135deg, #e6f5e6, #f0f8f0);
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .add-product-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .add-product-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .add-product-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .form-control {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #48b370;
+    box-shadow: 0 0 8px rgba(72, 179, 112, 0.3);
+  }
+
+  .add-btn {
+    background-color: #48b370;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .add-btn:hover {
+    background-color: #3a9e5f;
+    transform: translateY(-2px);
+  }
+
+  .farmer-image {
+    position: absolute;
+    bottom: -50px;
+    left: -100px;
+    width: 300px;
+    z-index: 0;
+    opacity: 0.8;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .add-product-title {
+      font-size: 2rem;
+    }
+
+    .farmer-image {
+      display: none; /* Hide farmer image on smaller screens */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .add-product-title {
+      font-size: 1.75rem;
+    }
+
+    .add-product-form {
+      padding: 1.5rem;
+    }
+  }
+</style>
 <body>
-  <br /><br />
-  <br />
-  <div class="row">
-    <div class="col-8 offset-2">
-      <h3>Add New Product to Your Store🍀</h3>
-
-      <form method="post" action="/sells">
-        <div class="mb-3">
-          <label for="title" class="form-label">Product Name:</label>
-          <input
-            type="text"
-            name="newSell[title][en]"
-            placeholder="Enter Item Name you want to sell"
-            class="form-control"
-            required
-          />
-        </div>
-
-        <div class="mb-3">
-          <label for="description" class="form-label">Description:</label>
-          <textarea
-            name="newSell[description][en]"
-            class="form-control"
-            required
-          ></textarea>
-          <div class="invalid-feedback">Write a short note about the spot</div>
-        </div>
-
-        <div class="mb-3">
-          <label for="image" class="form-label">Upload a Image</label>
-          <input
-            type="text"
-            name="newSell[image][url]"
-            placeholder="Enter Image URL"
-            class="form-control"
-          />
-          <div class="valid-feedback">
-            Default image will be placed in case of empty field
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="region" class="form-label">Location of Product: </label>
-          <input
-            type="text"
-            name="newSell[location]"
-            class="form-control"
-            placeholder="e.g: Jaipur, Rajasthan"
-            required
-          />
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label for="pricePerUnit" class="form-label">Price Per Unit:</label>
-            <input
-              type="number"
-              name="newSell[pricePerUnit]"
-              placeholder="e.g: 2000"
-              class="form-control"
-              required
-            />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label for="productQuantity" class="form-label"
-              >Product Quantity:</label
-            >
+  <div class="add-product-container">
+    <h3 class="add-product-title">Add New Product to Your Store 🍀</h3>
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2">
+        <form method="post" action="/sells" class="add-product-form">
+          <div class="mb-3">
+            <label for="title" class="form-label">Product Name:</label>
             <input
               type="text"
-              name="newSell[productQuantity]"
-              placeholder="e.g: 100 kg"
+              name="newSell[title][en]"
+              placeholder="Enter Item Name you want to sell"
               class="form-control"
               required
             />
           </div>
-          <div class="mb-3 col-md-4">
-            <label for="ProductType" class="form-label">Product Type:</label>
-            <select
-              name="newSell[productType][en]"
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea
+              name="newSell[description][en]"
               class="form-control"
+              placeholder="Describe your product in detail"
               required
-            >
-              <option value="" disabled selected>Select Product Type</option>
-              <option value="crop">Crop</option>
-              <option value="vegetables">Vegetables</option>
-              <option value="fruits">Fruits</option>
-              <option value="machinery">Machinery</option>
-              <option value="seeds">Seeds</option>
-              <option value="fertilizers">Fertilizers</option>
-            </select>
+            ></textarea>
+            <div class="invalid-feedback">Please provide a description.</div>
           </div>
-          <div class="mb-3 col-md-4">
-            <label for="minOrder" class="form-label">Minimum Order:</label>
-            <input
-              type="number"
-              name="newSell[minOrder]"
-              placeholder="e.g: 10"
-              class="form-control"
-              required
-            />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label for="contactDetail" class="form-label"
-              >Contact Detail(email/ph.no.):</label
-            >
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Upload an Image:</label>
             <input
               type="text"
-              name="newSell[contactDetail]"
-              placeholder="e.g: example@gmail.com or 9178123456"
+              name="newSell[image][url]"
+              placeholder="Enter Image URL"
               class="form-control"
+            />
+            <div class="valid-feedback">
+              A default image will be used if no URL is provided.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="region" class="form-label">Location of Product:</label>
+            <input
+              type="text"
+              name="newSell[location]"
+              class="form-control"
+              placeholder="e.g: Jaipur, Rajasthan"
               required
             />
           </div>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-dark add-btn">Add</button>
-      </form>
-      <br /><br /><br />
+
+          <div class="row">
+            <div class="mb-3 col-md-4">
+              <label for="pricePerUnit" class="form-label">Price Per Unit:</label>
+              <input
+                type="number"
+                name="newSell[pricePerUnit]"
+                placeholder="e.g: 2000"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="mb-3 col-md-4">
+              <label for="productQuantity" class="form-label"
+                >Product Quantity:</label
+              >
+              <input
+                type="text"
+                name="newSell[productQuantity]"
+                placeholder="e.g: 100 kg"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="mb-3 col-md-4">
+              <label for="ProductType" class="form-label">Product Type:</label>
+              <select
+                name="newSell[productType][en]"
+                class="form-control"
+                required
+              >
+                <option value="" disabled selected>Select Product Type</option>
+                <option value="crop">Crop</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="fruits">Fruits</option>
+                <option value="machinery">Machinery</option>
+                <option value="seeds">Seeds</option>
+                <option value="fertilizers">Fertilizers</option>
+              </select>
+            </div>
+
+            <div class="mb-3 col-md-4">
+              <label for="minOrder" class="form-label">Minimum Order:</label>
+              <input
+                type="number"
+                name="newSell[minOrder]"
+                placeholder="e.g: 10"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="mb-3 col-md-4">
+              <label for="contactDetail" class="form-label"
+                >Contact Detail (email/phone):</label
+              >
+              <input
+                type="text"
+                name="newSell[contactDetail]"
+                placeholder="e.g: example@gmail.com or 9178123456"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <br />
+          <button type="submit" class="btn add-btn">Add Product</button>
+        </form>
+      </div>
     </div>
+    <!-- Farmer Image -->
+ 
   </div>
 </body>

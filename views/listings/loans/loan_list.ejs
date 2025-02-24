@@ -1,36 +1,148 @@
 <% layout("/layouts/boilerplate") %>
+<style>/* Global Styles */
+  body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(135deg, #e8f1ff, #f0f7ff);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .loan-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .loan-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  /* Horizontal Cards */
+  .horizontal-card {
+    border: none !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .horizontal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .horizontal-card .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.3s ease;
+  }
+  
+  .horizontal-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .horizontal-card .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .horizontal-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .horizontal-card .card-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .horizontal-card .card-text i {
+    margin-right: 0.5rem;
+    color: #48b370; /* Light green */
+  }
+  
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Fix for text underline on hover */
+  .listing-link:hover {
+    text-decoration: none; /* Removes underline on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .loan-title {
+      font-size: 2rem;
+    }
+  
+    .horizontal-card {
+      flex-direction: column !important;
+    }
+  
+    .horizontal-card .col-md-4 {
+      width: 100%;
+    }
+  
+    .horizontal-card .col-md-8 {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .loan-title {
+      font-size: 1.75rem;
+    }
+  }</style>
 <body>
-  <h3>All Available Loans 💰</h3>
-  <!-- <form action="/listing/new" method="GET">
-    <button>Create New Listing</button>
-  </form> -->
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    <% for (let listing of loans){ %>
-    <a class="listing-link" href="/loans/<%=listing._id %>"
-      ><div class="card col" style="width: 20rem">
-        <img
-          src="<%=listing.image %>"
-          class="card-img-top"
-          alt="listing_image"
-          style="height: 20rem"
-        />
-        <div class="card-body">
-          <p class="card-text">
-            <b><%=listing.title.en %> | <%=listing.title.hi %></b>
-            <br />
-            Loan Amount: &#8377; <%= listing.amount %>
-            <br />
-            Bank Name: <%= listing.bankName %>
-            <br />
-            Interest Rate: <%= listing.interestRate %>
-            <br />
-            Duration: <%= listing.duration %>
-            <br />
-            Bank Website: <%= listing.bankWebsite %>
-          </p>
+  <div class="loan-container">
+    <h3 class="loan-title">All Available Loans 💰</h3>
+    <div class="loan-cards">
+      <% for (let listing of loans){ %>
+      <a class="listing-link" href="/loans/<%=listing._id %>">
+        <div class="card horizontal-card">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="<%=listing.image %>"
+                class="card-img-top"
+                alt="listing_image"
+                loading="lazy"
+                onerror="this.src='/images/placeholder.jpg';"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= listing.title.en %> | <%= listing.title.hi %>
+                </h5>
+                <p class="card-text">
+                  <i class="fas fa-rupee-sign"></i> <b>Loan Amount:</b> &#8377; <%= listing.amount %>
+                  <br />
+                  <i class="fas fa-university"></i> <b>Bank Name:</b> <%= listing.bankName %>
+                  <br />
+                  <i class="fas fa-percentage"></i> <b>Interest Rate:</b> <%= listing.interestRate %>
+                  <br />
+                  <i class="fas fa-clock"></i> <b>Duration:</b> <%= listing.duration %>
+                  <br />
+                  <i class="fas fa-globe"></i> <b>Bank Website:</b> <%= listing.bankWebsite %>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div></a
-    >
-    <% } %>
+      </a>
+      <% } %>
+    </div>
   </div>
 </body>

@@ -1,79 +1,110 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row mt-3">
-  <h1 class="col-6 offset-3">SignUp on KisanSeva🌿</h1>
-  <div class="col-6 offset-3">
-    <form
-      action="/signup"
-      method="POST"
-      class="needs-validation"
-      novalidate
-      onsubmit="validateForm(event)"
-    >
-      <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
-        <input
-          id="username"
-          type="text"
-          name="username"
-          class="form-control"
-          required
-        />
-        <div class="valid-feedback">Looks Good</div>
-      </div>
-      <div class="mb-3">
-        <label for="name" class="form-label">Full Name:</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          class="form-control"
-          required
-        />
-        <div class="valid-feedback">Looks Good</div>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="userType" class="form-label">Choose User Type</label>
-        <select id="userType" name="userType" class="form-control" required>
-          <option value="" disabled selected>Select your option</option>
-          <option value="Farmer">Farmer</option>
-          <option value="Seller">Independent Seller</option>
-          <option value="Banker">Banker</option>
-          <option value="NGO">NGO</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input
-          id="address"
-          type="text"
-          name="address"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          id="password"
-          type="text"
-          name="password"
-          class="form-control"
-          required
-        />
-      </div>
-      <button type="submit" class="btn btn-success" formnovalidate>
-        SignUp
-      </button>
-    </form>
+<div class="row mt-5 justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg p-4 border-0 rounded-4">
+      <h1 class="text-center mb-4 display-5 fw-bold text-success">Sign Up on KisanSeva 🌿</h1>
+      <form
+        action="/signup"
+        method="POST"
+        class="needs-validation"
+        novalidate
+        onsubmit="validateForm(event)"
+      >
+        <!-- Username Field -->
+        <div class="mb-3">
+          <label for="username" class="form-label fw-bold">Username:</label>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            class="form-control form-control-lg border-2 rounded-3"
+            placeholder="Enter your username"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter a valid username.</div>
+        </div>
+
+        <!-- Full Name Field -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Full Name:</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            class="form-control form-control-lg border-2 rounded-3"
+            placeholder="Enter your full name"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter your full name.</div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">E-mail:</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            class="form-control form-control-lg border-2 rounded-3"
+            placeholder="Enter your email"
+            required
+          />
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+
+        <!-- User Type Field -->
+        <div class="mb-3">
+          <label for="userType" class="form-label fw-bold">Choose User Type:</label>
+          <select
+            id="userType"
+            name="userType"
+            class="form-select form-control-lg border-2 rounded-3"
+            required
+          >
+            <option value="" disabled selected>Select your option</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Seller">Independent Seller</option>
+            <option value="Banker">Banker</option>
+            <option value="NGO">NGO</option>
+          </select>
+          <div class="invalid-feedback">Please select a user type.</div>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-3">
+          <label for="address" class="form-label fw-bold">Address:</label>
+          <input
+            id="address"
+            type="text"
+            name="address"
+            class="form-control form-control-lg border-2 rounded-3"
+            placeholder="Enter your address"
+            required
+          />
+          <div class="invalid-feedback">Please enter your address.</div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-4">
+          <label for="password" class="form-label fw-bold">Password:</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            class="form-control form-control-lg border-2 rounded-3"
+            placeholder="Enter your password"
+            required
+          />
+          <div class="invalid-feedback">Please enter a valid password.</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success btn-lg w-100 rounded-3 py-2 fw-bold">
+          SignUp
+        </button>
+      </form>
+    </div>
   </div>
 </div>
