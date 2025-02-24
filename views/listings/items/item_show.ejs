@@ -216,6 +216,16 @@
               <b>Seller: </b>Anonymous
               <% } %>
               <br />
+              <br>
+              <b>Item Name:</b> <%= item.title.en %> | <%= item.title.hi %> | <%= item.title.or %>
+              <br />
+              <p><%= item.description.en %>  </p>
+              <br>
+              <p><%= item.description.hi %></p>
+              <br>
+             <p><%=item.description.or %></p> 
+              <br>
+
               <b>Price Per Unit:</b> &#8377; <%= item.pricePerKg %>
               <br />
               <b>Product Location:</b> <%= item.location %>
