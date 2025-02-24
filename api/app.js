@@ -31,19 +31,51 @@ app.use(express.static(path.join(__dirname, '../public')));
 async function main() {
     await mongoose.connect(dbUrl);
 }
+const MongoStore = require("connect-mongo");
 
+// const sessionOptions = {
+//     secret: "thisisnotagoodsecret",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+//         maxAge: 7 * 24 * 60 * 60 * 1000,
+//         httpOnly: true,
+//     }
+// }
+
+// app.use(
+//     session({
+//         secret: "thisisnotagoodsecret",
+//         resave: false,
+//         saveUninitialized: true,
+//         store: MongoStore.create({
+//             mongoUrl: process.env.MONGO_URL,
+//             ttl: 14 * 24 * 60 * 60, // Session expiration in seconds
+//         }),
+//         cookie: {
+//             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === "production", // Secure in production
+//             sameSite: "lax",
+//         },
+//     })
+// );
 const sessionOptions = {
     secret: "thisisnotagoodsecret",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: dbUrl }),
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-    }
-}
-
+        secure: process.env.NODE_ENV === "production", // Only secure in production
+        sameSite: "lax",
+    },
+};
 app.use(session(sessionOptions));
+
 app.use(flash());
 
 app.use(passport.initialize());
@@ -53,10 +85,19 @@ passport.serializeUser((user, done) => {
     done(null, user.id); // Store user ID in session
 });
 
+// passport.deserializeUser(async (id, done) => {
+//     try {
+//         const user = await User.findById(id);
+//         done(null, user); // Attach user object to req.user
+//     } catch (err) {
+//         done(err);
+//     }
+// });
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await User.findById(id);
-        done(null, user); // Attach user object to req.user
+        const user = await User.findById(id).lean();
+        if (!user) return done(null, false);
+        done(null, user);
     } catch (err) {
         done(err);
     }
