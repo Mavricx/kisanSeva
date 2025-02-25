@@ -1,381 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kisan Seva - Farmer Dashboard</title>
     <!-- Bootstrap CSS -->
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
     />
     <!-- Font Awesome Icons -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #e6f5e6, #f0f8f0);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
+      /* Global Styles */
+      body {
+        font-family: "Open Sans", sans-serif;
+        background: linear-gradient(135deg, #e6f5e6, #f0f8f0);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-        }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+      }
 
-        /* Sidebar */
+      /* Sidebar */
+      .sidebar {
+        background: rgba(33, 167, 91, 0.9); /* Semi-transparent green */
+        backdrop-filter: blur(10px);
+        color: white;
+        min-height: 100vh;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .sidebar .logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .sidebar .logo img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .sidebar .logo h4 {
+        margin-top: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .sidebar .nav-link {
+        color: white;
+        padding: 12px 20px;
+        margin: 5px 0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+      }
+
+      .sidebar .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+      }
+
+      .sidebar .nav-link i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      /* Dashboard */
+      .dashboard {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px;
+      }
+
+      /* Cards */
+      .card {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        background: #2e8b57;
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 15px;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .card-text {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: #2e8b57;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-primary:hover {
+        background: #3cb371;
+        transform: translateY(-2px);
+      }
+
+      /* Search Box */
+      .search-box input {
+        border-radius: 20px;
+        padding: 10px 20px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+      }
+
+      .search-box input:focus {
+        border-color: #2e8b57;
+        box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
+      }
+
+      /* Talk2Text Section */
+      .talk2text-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .talk2text-card textarea {
+        border-radius: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+      }
+
+      .talk2text-card textarea:focus {
+        border-color: #2e8b57;
+        box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .sidebar {
-            background: rgba(33, 167, 91, 0.9); /* Semi-transparent green */
-            backdrop-filter: blur(10px);
-            color: white;
-            min-height: 100vh;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+          min-height: auto;
+          height: auto;
         }
 
-        .sidebar .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar .logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .sidebar .logo h4 {
-            margin-top: 10px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .sidebar .nav-link {
-            color: white;
-            padding: 12px 20px;
-            margin: 5px 0;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
-
-        .sidebar .nav-link i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Dashboard */
         .dashboard {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px;
+          margin: 10px;
         }
-
-        /* Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-header {
-            background: #2e8b57;
-            color: white;
-            border-radius: 15px 15px 0 0;
-            padding: 15px;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card-text {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: #2e8b57;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-primary:hover {
-            background: #3cb371;
-            transform: translateY(-2px);
-        }
-
-        /* Search Box */
-        .search-box input {
-            border-radius: 20px;
-            padding: 10px 20px;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            border-color: #2e8b57;
-            box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
-        }
-
-        /* Talk2Text Section */
-        .talk2text-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .talk2text-card textarea {
-            border-radius: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
-        }
-
-        .talk2text-card textarea:focus {
-            border-color: #2e8b57;
-            box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                min-height: auto;
-                height: auto;
-            }
-
-            .dashboard {
-                margin: 10px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-                <div class="logo">
-                    <h4>Kisan Seva   <i class="fa-solid fa-wheat-awn"></i></h4>
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+          <div class="logo">
+            <h4>Kisan Seva <i class="fa-solid fa-wheat-awn"></i></h4>
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <i class="fas fa-home"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/items">
+                <i class="fas fa-store"></i> Marketplace
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sells">
+                <i class="fas fa-chart-line"></i> Your Store
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/loans">
+                <i class="fas fa-hand-holding-usd"></i> Financial Help
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/schemes">
+                <i class="fas fa-share-alt"></i> Schemes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="dashboard mt-4">
+            <!-- Top Bar -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2>Dashboard</h2>
+              <div class="search-box w-50">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search here..."
+                  />
+                  <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-search"></i>
+                  </button>
                 </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <i class="fas fa-home"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/items">
-                            <i class="fas fa-store"></i> Marketplace
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sells">
-                            <i class="fas fa-chart-line"></i> Your Store
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/loans">
-                            <i class="fas fa-hand-holding-usd"></i> Financial Help
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/schemes">
-                            <i class="fas fa-share-alt"></i> Schemes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+              </div>
+            </div>
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="dashboard mt-4">
-                    <!-- Top Bar -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>Dashboard</h2>
-                        <div class="search-box w-50">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search here..." />
-                                <button class="btn btn-outline-secondary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cards -->
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <i class="fas fa-store fa-3x mb-3"></i>
-                                    <h5 class="card-title">Marketplace</h5>
-                                    <a href="/items" class="btn btn-primary">Explore</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <i class="fas fa-chart-line fa-3x mb-3"></i>
-                                    <h5 class="card-title">Your Store</h5>
-                                    <a href="/sells" class="btn btn-primary">View</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <i class="fas fa-share-alt fa-3x mb-3"></i>
-                                    <h5 class="card-title">Schemes</h5>
-                                    <a href="/schemes" class="btn btn-primary">Learn More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Talk2Text Section -->
-                    <div class="talk2text-card mt-4">
-                        <form method="post" action="/search">
-                            <h5 class="card-title">Voice Assistant</h5>
-                            <textarea
-                                placeholder="Your text will appear here..."
-                                class="form-control mb-3"
-                                style="height: 100px"
-                                name="voice"
-                            ></textarea>
-                            <div class="mb-3">
-                                <label for="languages" class="form-label">Choose a language:</label>
-                                <select id="languages" name="lang" class="form-select">
-                                    <option value="en-IN">English (India)</option>
-                                    <option value="hi-IN">Hindi (India)</option>
-                                    <option value="or-IN">Odia (India)</option>
-                                </select>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-danger" type="button" title="Start listening">
-                                    <i class="fas fa-microphone"></i>
-                                </button>
-                                <button class="btn btn-dark" type="button" title="Stop listening">
-                                    <i class="fas fa-stop"></i>
-                                </button>
-                                <button class="btn btn-warning" type="button" title="Copy this text">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                                <button class="btn btn-secondary" type="button" title="Clear text">
-                                    <i class="fas fa-eraser"></i>
-                                </button>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Perform Task</button>
-                        </form>
-                    </div>
+            <!-- Cards -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <i class="fas fa-store fa-3x mb-3"></i>
+                    <h5 class="card-title">Marketplace</h5>
+                    <a href="/items" class="btn btn-primary">Explore</a>
+                  </div>
                 </div>
-            </main>
-        </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <i class="fas fa-chart-line fa-3x mb-3"></i>
+                    <h5 class="card-title">Your Store</h5>
+                    <a href="/sells" class="btn btn-primary">View</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <i class="fas fa-share-alt fa-3x mb-3"></i>
+                    <h5 class="card-title">Schemes</h5>
+                    <a href="/schemes" class="btn btn-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Talk2Text Section -->
+            <div class="talk2text-card mt-4">
+              <form method="post" action="/search">
+                <h5 class="card-title">Voice Assistant</h5>
+                <textarea
+                  placeholder="Your text will appear here..."
+                  class="form-control mb-3 textb"
+                  style="height: 100px"
+                  name="voice"
+                ></textarea>
+                <div class="mb-3">
+                  <label for="languages" class="form-label"
+                    >Choose a language:</label
+                  >
+                  <select
+                    id="languages google_translate_element"
+                    name="lang"
+                    class="form-select"
+                  >
+                    <option value="en-IN">English (India)</option>
+                    <option value="hi-IN">Hindi (India)</option>
+                    <option value="or-IN">Odia (India)</option>
+                  </select>
+                </div>
+                <div class="d-flex gap-2">
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    title="Start listening"
+                  >
+                    <i class="fas fa-microphone"></i>
+                  </button>
+                  <button
+                    class="btn btn-dark"
+                    type="button"
+                    title="Stop listening"
+                  >
+                    <i class="fas fa-stop"></i>
+                  </button>
+                  <button
+                    class="btn btn-warning"
+                    type="button"
+                    title="Copy this text"
+                  >
+                    <i class="fas fa-copy"></i>
+                  </button>
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    title="Clear text"
+                  >
+                    <i class="fas fa-eraser"></i>
+                  </button>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">
+                  Perform Task
+                </button>
+              </form>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
     ></script>
     <!-- Custom JS -->
     <script>
-        // Speech Recognition Script (Same as before)
-        let element = document.querySelector(".form-control");
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.continuous = true;
-        const mic = document.querySelector(".btn-danger");
-        const stop = document.querySelector(".btn-dark");
-        const copy = document.querySelector(".btn-warning");
-        const clear = document.querySelector(".btn-secondary");
-        const lang = document.getElementById("languages");
+      // Speech Recognition Script (Same as before)
+      let element = document.querySelector(".textb");
+      const recognition = new (window.SpeechRecognition ||
+        window.webkitSpeechRecognition)();
+      recognition.continuous = true;
+      const mic = document.querySelector(".btn-danger");
+      const stop = document.querySelector(".btn-dark");
+      const copy = document.querySelector(".btn-warning");
+      const clear = document.querySelector(".btn-secondary");
+      const lang = document.getElementById("languages");
 
-        copy.addEventListener("click", () => {
-            navigator.clipboard.writeText(element.value).then(() => {
-                alert("Text copied to clipboard");
-            }).catch((error) => {
-                console.log("copy failed: " + error);
-            });
-        });
+      copy.addEventListener("click", () => {
+        navigator.clipboard
+          .writeText(element.value)
+          .then(() => {
+            alert("Text copied to clipboard");
+          })
+          .catch((error) => {
+            console.log("copy failed: " + error);
+          });
+      });
 
-        mic.addEventListener("click", () => {
-            if (recognition && lang) {
-                recognition.lang = lang.value || "en-IN";
-                recognition.start();
-            } else {
-                console.log("Error in recognition or language");
-            }
-        });
+      mic.addEventListener("click", () => {
+        if (recognition && lang) {
+          recognition.lang = lang.value || "en-IN";
+          recognition.start();
+        } else {
+          console.log("Error in recognition or language");
+        }
+      });
 
-        stop.addEventListener("click", () => { recognition.stop(); });
+      stop.addEventListener("click", () => {
+        recognition.stop();
+      });
 
-        recognition.onresult = (event) => {
-            let transcript = "";
-            for (const result of event.results) {
-                transcript += result[0].transcript + " ";
-            }
-            element.value += transcript;
-        };
+      recognition.onresult = (event) => {
+        let transcript = "";
+        for (const result of event.results) {
+          transcript += result[0].transcript + " ";
+        }
+        element.value += transcript;
+      };
 
-        recognition.onerror = (event) => {
-            console.log("Error occurred in recognition: " + event.error);
-        };
+      recognition.onerror = (event) => {
+        console.log("Error occurred in recognition: " + event.error);
+      };
 
-        clear.addEventListener("click", () => {
-            element.value = "";
-        });
+      clear.addEventListener("click", () => {
+        element.value = "";
+      });
     </script>
-</body>
+  </body>
 </html>

@@ -1,9 +1,10 @@
 <% layout("/layouts/boilerplate") %>
+<meta charset="UTF-8" />
 <style>
   /* Global Styles */
 
   body {
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: "Jakarta Sans", sans-serif;
     background: linear-gradient(135deg, #f0fdf4, #dcfce7);
     color: #333;
     margin: 0;
@@ -168,7 +169,7 @@
             <h5 class="card-title">
               <%= listing.title.en %>
               <br />
-              <%= listing.title.hi %>
+              <%= listing.title.hi %> 
             </h5>
             <p class="card-text">
               <i class="fas fa-user"></i> <%= listing.owner.name %>

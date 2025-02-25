@@ -47,10 +47,13 @@ module.exports.searchGet = async (req, res) => {
             $or: [
                 { "title.en": { $regex: keyword, $options: "i" } },
                 { "title.hi": { $regex: keyword, $options: "i" } },
+                { "title.or": { $regex: keyword, $options: "i" } },
                 { "description.en": { $regex: keyword, $options: "i" } },
                 { "description.hi": { $regex: keyword, $options: "i" } },
+                { "description.or": { $regex: keyword, $options: "i" } },
                 { "productType.en": { $regex: keyword, $options: "i" } },
                 { "productType.hi": { $regex: keyword, $options: "i" } },
+                { "productType.or": { $regex: keyword, $options: "i" } },
             ],
         });
 
@@ -59,8 +62,10 @@ module.exports.searchGet = async (req, res) => {
             $or: [
                 { "title.en": { $regex: voice, $options: "i" } },
                 { "title.hi": { $regex: voice, $options: "i" } },
+                { "title.or": { $regex: voice, $options: "i" } },
                 { "description.en": { $regex: voice, $options: "i" } },
                 { "description.hi": { $regex: voice, $options: "i" } },
+                { "description.or": { $regex: voice, $options: "i" } },
             ],
         });
 
@@ -68,8 +73,10 @@ module.exports.searchGet = async (req, res) => {
             $or: [
                 { "schemeName.en": { $regex: voice, $options: "i" } },
                 { "schemeName.hi": { $regex: voice, $options: "i" } },
+                { "schemeName.or": { $regex: voice, $options: "i" } },
                 { "description.en": { $regex: voice, $options: "i" } },
                 { "description.hi": { $regex: voice, $options: "i" } },
+                { "description.or": { $regex: voice, $options: "i" } },
             ],
         });
 
