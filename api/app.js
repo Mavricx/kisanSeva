@@ -16,6 +16,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const MongoStore = require("connect-mongo");
 
 const User = require('../models/user.js');
 const Schemes = require("../models/schemes.js");
@@ -31,16 +32,24 @@ app.use(express.static(path.join(__dirname, '../public')));
 async function main() {
     await mongoose.connect(dbUrl);
 }
-const MongoStore = require("connect-mongo");
+
+const sessionStore=MongoStore.create({
+    mongoUrl:dbUrl,
+    secret:"thisisnotaagoodsecret",
+    touchAfter:24*3600
+})
 
 const sessionOptions = {
+    store:sessionStore,
+    name:"session",
     secret: "thisisnotagoodsecret",
     resave: false,
     saveUninitialized: true,
     cookie: {
+        httpOnly:true,
+        secure:process.env.NODE_ENV === "production",
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
     }
 }
 
