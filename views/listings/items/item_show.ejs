@@ -1,3 +1,4 @@
+
 <% layout("/layouts/boilerplate") %>
 <style>
   /* Global Styles */
@@ -203,30 +204,20 @@
               <%= item.title.en %> | <%= item.title.hi %>
             </h5>
             <p class="card-text">
-              <b>Description:</b>
-              <br />
-              <%= item.description.en %>
-              <br />
-              <%= item.description.hi %>
-            </p>
-            <p class="card-text">
               <% if(item.owner){ %>
               <b>Seller: </b><%= item.owner.name %>
               <% } else { %>
               <b>Seller: </b>Anonymous
               <% } %>
-              <br />
               <br>
               <b>Item Name:</b> <%= item.title.en %> | <%= item.title.hi %> | <%= item.title.or %>
               <br />
               <p><%= item.description.en %>  </p>
-              <br>
               <p><%= item.description.hi %></p>
+              <p><%= item.description.or %></p>
               <br>
              <p><%=item.description.or %></p> 
-              <br>
-
-              <b>Price Per Unit:</b> &#8377; <%= item.pricePerUnit%>
+              <b>Price Per Unit:</b> &#8377; <%= item.pricePerUnit %>
               <br />
               <b>Product Location:</b> <%= item.location %>
               <br />
@@ -237,7 +228,7 @@
               <b>Contact:</b> <%= item.contactDetail %>
             </p>
             <div class="d-flex justify-content-center mb-3">
-              <a href="" class="btn  btn-success mr-3 "> Ready To Buy</a>
+              <a href="/bought" class="btn  btn-success mr-3 "> Ready To Buy</a>
               <form method="get" action="/items">
                 <button class="btn btn-danger">Not Interested</button>
               </form>
