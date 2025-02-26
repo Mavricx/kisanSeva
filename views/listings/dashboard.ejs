@@ -302,7 +302,7 @@
                 <h5 class="card-title">Voice Assistant</h5>
                 <textarea
                   placeholder="Your text will appear here..."
-                  class="form-control mb-3 textb"
+                  class="form-control mb-3 textbo"
                   style="height: 100px"
                   name="voice"
                 ></textarea>
@@ -310,11 +310,7 @@
                   <label for="languages" class="form-label"
                     >Choose a language:</label
                   >
-                  <select
-                    id="languages google_translate_element"
-                    name="lang"
-                    class="form-select"
-                  >
+                  <select id="languages" name="lang" class="form-select">
                     <option value="en-IN">English (India)</option>
                     <option value="hi-IN">Hindi (India)</option>
                     <option value="or-IN">Odia (India)</option>
@@ -369,7 +365,7 @@
     <!-- Custom JS -->
     <script>
       // Speech Recognition Script (Same as before)
-      let element = document.querySelector(".textb");
+      let element = document.querySelector(".textbo");
       const recognition = new (window.SpeechRecognition ||
         window.webkitSpeechRecognition)();
       recognition.continuous = true;
