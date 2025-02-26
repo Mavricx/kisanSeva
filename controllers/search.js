@@ -14,13 +14,22 @@ const extractKeyword = (query, language) => {
 
     const words = query.trim().split(/\s+/); // Split by spaces
 
-    if(words.length==1){
+    if (words.length == 1) {
         return words[0];
     }
     else if (language === "en-IN" || words.length <= 3) {
         return words.length > 0 ? words[words.length - 1] : null; // Last word
     } else if (language === "hi-IN") {
-        return words.length >= 3 ? words[1] : null; // second word
+        if (words.length == 1) {
+            return words[0];
+        }
+        else if (words.length == 2 || words.length == 3) {
+            return words[1];
+        }
+        else {
+            return words.length > 3 ? words[2] : null; // second word
+        }
+
     }
     else if (language === "or-IN") {
         return words[1];
