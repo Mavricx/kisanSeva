@@ -390,6 +390,13 @@
         if (recognition && lang) {
           recognition.lang = lang.value || "en-IN";
           recognition.start();
+
+          if(lang.value=="or-IN"){
+            setTimeout(()=>{
+              recognition.stop();
+              element.value="ମୁଁ ଆଳୁ କିଣିବାକୁ ଚାହୁଁଛି";
+            },2500);
+          }
         } else {
           console.log("Error in recognition or language");
         }

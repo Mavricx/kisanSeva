@@ -22,6 +22,9 @@ const extractKeyword = (query, language) => {
     } else if (language === "hi-IN") {
         return words.length >= 3 ? words[1] : null; // second word
     }
+    else if (language === "or-IN") {
+        return words[1];
+    }
     return null;
 };
 
