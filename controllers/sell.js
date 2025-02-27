@@ -64,7 +64,10 @@ module.exports.createSell = async (req, res, next) => {
     try {
         const newSell = new Item(req.body.newSell);
         newSell.owner = req.user._id;
-        newSell.image.url = req.body.image.url;
+        if (!newSell.image.url) {
+            newSell.image.url = "https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=800"
+        }
+        newSell.image.filename = "default.jpg";
         await newSell.save();
         req.flash("success", "New Listing Created!!");
         res.redirect("/sells");
