@@ -27,7 +27,7 @@ const extractKeyword = (query, language) => {
             return words[1];
         }
         else {
-            return words.length > 3 ? words[2] : null; // second word
+            return words.length > 3 ? words[2] : null; // third word
         }
 
     }

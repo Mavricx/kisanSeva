@@ -45,6 +45,6 @@ module.exports.logout = (req, res) => {
             return next(err);
         }
         req.flash("success", "Goodbye!");
-        res.redirect("/");
+        res.redirect("/signup");
     })
 }
