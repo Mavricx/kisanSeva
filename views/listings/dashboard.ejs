@@ -207,44 +207,31 @@
       /* Responsive Design */
       @media (max-width: 768px) {
         .sidebar {
-          min-height: auto;
+          min-height: 100vh;
+          width: 250px;
+          transform: translateX(-100%);
           height: auto;
         }
-
-        .dashboard {
-          margin: 10px;
-        }
-      }
-      @media (max-width: 768px) {
-        .sidebar {
-          transform: translateX(-100%);
-        }
-        
         .sidebar.active {
           transform: translateX(0);
         }
-
         .main-content-overlay.active {
           display: block;
         }
-      }
-
-      /* Modify existing mobile styles */
-      @media (max-width: 768px) {
-        .sidebar {
-          min-height: 100vh;
-          width: 250px;
-          margin-left: -250px;
-        }
-
         main {
           margin-left: 0;
           padding: 15px;
         }
+        body.sidebar-active {
+          overflow: hidden;
+        }
       }
+
+      /* Modify existing mobile styles */
     </style>
   </head>
   <body>
+    <div class="main-content-overlay"></div>
     <div class="container-fluid">
       <div class="row">
         <!-- Sidebar -->
@@ -288,7 +275,6 @@
 
         <!-- Main Content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="main-content-overlay"></div>
           <div class="dashboard mt-4">
             <!-- Top Bar -->
             <div class="d-flex justify-content-between align-items-center mb-4">
