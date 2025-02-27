@@ -13,7 +13,7 @@ const userSchema = new Schema({
     },
     userType: {
         type: String,
-        enum: ["Farmer", "Seller", "Banker", "NGO"],
+        enum: ["Farmer","Buyer", "Seller", "Banker", "NGO"],
     },
     address: {
         type: String,

@@ -2,7 +2,9 @@
 <div class="row mt-5 justify-content-center">
   <div class="col-md-10 col-lg-8">
     <div class="card shadow-lg p-4 border-0 rounded-4">
-      <h1 class="text-center mb-4 display-5 fw-bold text-success">Sign Up on KisanSeva 🌿</h1>
+      <h1 class="text-center mb-4 display-5 fw-bold text-success">
+        Sign Up on KisanSeva 🌿
+      </h1>
       <form
         action="/signup"
         method="POST"
@@ -56,7 +58,9 @@
 
         <!-- User Type Field -->
         <div class="mb-3">
-          <label for="userType" class="form-label fw-bold">Choose User Type:</label>
+          <label for="userType" class="form-label fw-bold"
+            >Choose User Type:</label
+          >
           <select
             id="userType"
             name="userType"
@@ -65,6 +69,7 @@
           >
             <option value="" disabled selected>Select your option</option>
             <option value="Farmer">Farmer</option>
+            <option value="Buyer">Buyer</option>
             <option value="Seller">Independent Seller</option>
             <option value="Banker">Banker</option>
             <option value="NGO">NGO</option>
@@ -101,7 +106,10 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-success btn-lg w-100 rounded-3 py-2 fw-bold">
+        <button
+          type="submit"
+          class="btn btn-success btn-lg w-100 rounded-3 py-2 fw-bold"
+        >
           SignUp
         </button>
       </form>
