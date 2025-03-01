@@ -33,21 +33,21 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 
-const sessionStore=MongoStore.create({
-    mongoUrl:dbUrl,
-    secret:"thisisnotaagoodsecret",
-    touchAfter:24*3600
+const sessionStore = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret: "thisisnotaagoodsecret",
+    touchAfter: 24 * 3600
 })
 
 const sessionOptions = {
-    store:sessionStore,
-    name:"session",
+    store: sessionStore,
+    name: "session",
     secret: "thisisnotagoodsecret",
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly:true,
-        secure:process.env.NODE_ENV === "production",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
     }
@@ -143,6 +143,9 @@ app.get("/dashboard", (req, res) => {
     res.render("listings/dashboard.ejs")
 })
 
+app.get("/bought", (req, res) => {
+    res.render("listings/bought.ejs");
+})
 app.use("/", userRouter)
 app.use("/items", itemRouter);
 app.use("/items/:id/reviews", reviewRouter)
