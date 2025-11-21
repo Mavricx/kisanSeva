@@ -56,7 +56,7 @@ Traditional farming communities often struggle with:
 ## 🏛 **Tech Stack**
 
 ### **Frontend**
-- React.js / HTML / CSS / JavaScript  
+- EJS / HTML / CSS / JavaScript  
 - Responsive UI for mobile-first experience  
 
 ### **Backend**
